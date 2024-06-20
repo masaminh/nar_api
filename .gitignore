@@ -1,0 +1,10 @@
+*.js
+!jest.config.js
+!.prettierrc.js
+*.d.ts
+node_modules
+.cdk.staging
+cdk.out
+build
+coverage
+cdk.context.json
