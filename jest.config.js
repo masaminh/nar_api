@@ -7,4 +7,5 @@ module.exports = {
   },
   collectCoverage: true,
   coverageDirectory: 'coverage',
+  globalSetup: './jest.globalsetup.js',
 };

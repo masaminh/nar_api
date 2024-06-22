@@ -25,7 +25,7 @@ describe('api_get_raceids', () => {
       prefixes: [],
     });
     const result = await getRaceIds(
-      DateTime.fromISO('2024-01-02T00:00:00+09:00')
+      DateTime.fromISO('2024-01-02T00:00:00+09:00').setZone('Asia/Tokyo')
     );
     expect(result).toEqual({
       date: '2024-01-02',
@@ -35,7 +35,9 @@ describe('api_get_raceids', () => {
 
   it('getRaceIds: 日付不正', async () => {
     await expect(() =>
-      getRaceIds(DateTime.fromISO('2024-02-30T00:00:00+09:00'))
+      getRaceIds(
+        DateTime.fromISO('2024-02-30T00:00:00+09:00').setZone('Asia/Tokyo')
+      )
     ).rejects.toThrow();
   });
 });
