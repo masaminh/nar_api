@@ -61,7 +61,7 @@ app.get(
   })
 );
 
-app.all('*', (req, res) => {
+app.all('/:wildcard', (req, res) => {
   res.sendStatus(404);
 });
 
