@@ -40,7 +40,6 @@ exports[`snapshot test 1`] = `
         },
         "Environment": {
           "Variables": {
-            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
             "CACHE_BUCKET": "cachebucket",
             "CACHE_PREFIX": "CACHEPREFIX",
           },
@@ -217,7 +216,6 @@ exports[`snapshot test 1`] = `
         },
         "Environment": {
           "Variables": {
-            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
             "STATE_MACHINE_ARN": {
               "Ref": "GetRaceUrlsStateMachineF5E0D7EE",
             },
@@ -472,11 +470,6 @@ exports[`snapshot test 1`] = `
           },
           "S3Key": "9e68bc04be31452b36d376b1f41664bb68bdecb4a980e2753306700aa276bff5.zip",
         },
-        "Environment": {
-          "Variables": {
-            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
-          },
-        },
         "FunctionName": "STACKNAME-GetDayRacesUrlsFunction",
         "Handler": "index.handler",
         "LoggingConfig": {
@@ -570,7 +563,7 @@ exports[`snapshot test 1`] = `
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
               "Principal": {
-                "Service": "states.ap-northeast-1.amazonaws.com",
+                "Service": "states.amazonaws.com",
               },
             },
           ],
@@ -716,11 +709,6 @@ exports[`snapshot test 1`] = `
           },
           "S3Key": "ef813c5cac5df9d9efb2e36218db3126a14356a708b34730acb802a7de2fb318.zip",
         },
-        "Environment": {
-          "Variables": {
-            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
-          },
-        },
         "FunctionName": "STACKNAME-GetRaceUrlsFunction",
         "Handler": "index.handler",
         "LoggingConfig": {
@@ -823,7 +811,7 @@ exports[`snapshot test 1`] = `
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
               "Principal": {
-                "Service": "states.ap-northeast-1.amazonaws.com",
+                "Service": "states.amazonaws.com",
               },
             },
           ],
@@ -934,7 +922,6 @@ exports[`snapshot test 1`] = `
         },
         "Environment": {
           "Variables": {
-            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
             "CACHE_BUCKET": "cachebucket",
             "CACHE_PREFIX": "CACHEPREFIX",
           },
