@@ -1,0 +1,1132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "ApiFunctionApiUrlParameter09CB985F": {
+      "Properties": {
+        "Name": "/STAGE/NarApi/Url",
+        "Type": "String",
+        "Value": {
+          "Fn::GetAtt": [
+            "ApiFunctionFunctionUrl73AD62DC",
+            "FunctionUrl",
+          ],
+        },
+      },
+      "Type": "AWS::SSM::Parameter",
+    },
+    "ApiFunctionCE271BD4": {
+      "DependsOn": [
+        "ApiFunctionServiceRoleDefaultPolicy20A32B8D",
+        "ApiFunctionServiceRole52B9747B",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-ap-northeast-1",
+          },
+          "S3Key": "fb7217da287a0e2447cad9df9864f15fc0ddca0a3d71903be2a77f6b6fb59add.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+            "CACHE_BUCKET": "cachebucket",
+            "CACHE_PREFIX": "CACHEPREFIX",
+          },
+        },
+        "FunctionName": "STACKNAME-ApiFunction",
+        "Handler": "index.handler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "ApiFunctionLogGroupB51C7C52",
+          },
+        },
+        "MemorySize": 160,
+        "Role": {
+          "Fn::GetAtt": [
+            "ApiFunctionServiceRole52B9747B",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs20.x",
+        "Timeout": 30,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ApiFunctionFunctionUrl73AD62DC": {
+      "Properties": {
+        "AuthType": "NONE",
+        "TargetFunctionArn": {
+          "Fn::GetAtt": [
+            "ApiFunctionCE271BD4",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Url",
+    },
+    "ApiFunctionLogGroupB51C7C52": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "LogGroupName": "STACKNAME/ApiFunction",
+        "RetentionInDays": 30,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ApiFunctionServiceRole52B9747B": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ApiFunctionServiceRoleDefaultPolicy20A32B8D": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::cachebucket",
+                    ],
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::cachebucket/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ApiFunctionServiceRoleDefaultPolicy20A32B8D",
+        "Roles": [
+          {
+            "Ref": "ApiFunctionServiceRole52B9747B",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ApiFunctioninvokefunctionurl0B8A0798": {
+      "Properties": {
+        "Action": "lambda:InvokeFunctionUrl",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ApiFunctionCE271BD4",
+            "Arn",
+          ],
+        },
+        "FunctionUrlAuthType": "NONE",
+        "Principal": "*",
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "DayRaceQueueA2B24540": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "MessageRetentionPeriod": 900,
+        "VisibilityTimeout": 300,
+      },
+      "Type": "AWS::SQS::Queue",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "DayRaceQueueFunctionBC5007B2": {
+      "DependsOn": [
+        "DayRaceQueueFunctionServiceRoleDefaultPolicy6808BC82",
+        "DayRaceQueueFunctionServiceRole170B2622",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-ap-northeast-1",
+          },
+          "S3Key": "6271cddb2ec8dede242e6d7bcd23fde5d5d43d69266b687ee2a9f44545327936.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+            "STATE_MACHINE_ARN": {
+              "Ref": "GetRaceUrlsStateMachineF5E0D7EE",
+            },
+          },
+        },
+        "FunctionName": "STACKNAME-SqsToStateMachineFunction",
+        "Handler": "index.handler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "DayRaceQueueFunctionLogGroup481A7B00",
+          },
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "DayRaceQueueFunctionServiceRole170B2622",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs20.x",
+        "Timeout": 300,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "DayRaceQueueFunctionLogGroup481A7B00": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "LogGroupName": "STACKNAME/SqsToStateMachineFunction",
+        "RetentionInDays": 30,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "DayRaceQueueFunctionServiceRole170B2622": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "DayRaceQueueFunctionServiceRoleDefaultPolicy6808BC82": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sqs:ReceiveMessage",
+                "sqs:ChangeMessageVisibility",
+                "sqs:GetQueueUrl",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "DayRaceQueueA2B24540",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": "states:StartSyncExecution",
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "GetRaceUrlsStateMachineF5E0D7EE",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "DayRaceQueueFunctionServiceRoleDefaultPolicy6808BC82",
+        "Roles": [
+          {
+            "Ref": "DayRaceQueueFunctionServiceRole170B2622",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "DayRaceQueueFunctionSqsEventSourceMyTestStackDayRaceQueue167FFD675BF407A7": {
+      "Properties": {
+        "BatchSize": 10,
+        "EventSourceArn": {
+          "Fn::GetAtt": [
+            "DayRaceQueueA2B24540",
+            "Arn",
+          ],
+        },
+        "FunctionName": {
+          "Ref": "DayRaceQueueFunctionBC5007B2",
+        },
+        "FunctionResponseTypes": [
+          "ReportBatchItemFailures",
+        ],
+        "MaximumBatchingWindowInSeconds": 60,
+        "ScalingConfig": {
+          "MaximumConcurrency": 2,
+        },
+      },
+      "Type": "AWS::Lambda::EventSourceMapping",
+    },
+    "GetDayRacesUrlsScheduler": {
+      "Properties": {
+        "FlexibleTimeWindow": {
+          "Mode": "OFF",
+        },
+        "ScheduleExpression": "cron(0 0 * * ? *)",
+        "ScheduleExpressionTimezone": "Asia/Tokyo",
+        "Target": {
+          "Arn": {
+            "Ref": "GetDayRacesUrlsStateMachine817FE372",
+          },
+          "RoleArn": {
+            "Fn::GetAtt": [
+              "GetDayRacesUrlsSchedulerRole56681D99",
+              "Arn",
+            ],
+          },
+        },
+      },
+      "Type": "AWS::Scheduler::Schedule",
+    },
+    "GetDayRacesUrlsSchedulerRole56681D99": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "scheduler.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GetDayRacesUrlsSchedulerRoleDefaultPolicyDB129713": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "states:StartExecution",
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "GetDayRacesUrlsStateMachine817FE372",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GetDayRacesUrlsSchedulerRoleDefaultPolicyDB129713",
+        "Roles": [
+          {
+            "Ref": "GetDayRacesUrlsSchedulerRole56681D99",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GetDayRacesUrlsStateMachine817FE372": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "GetDayRacesUrlsStateMachineRoleDefaultPolicyAC43692A",
+        "GetDayRacesUrlsStateMachineRole93905194",
+      ],
+      "Properties": {
+        "DefinitionString": {
+          "Fn::Join": [
+            "",
+            [
+              "{"StartAt":"GetDayRacesUrls","States":{"GetDayRacesUrls":{"Next":"SendToQueueMap","Retry":[{"ErrorEquals":["Lambda.ClientExecutionTimeoutException","Lambda.ServiceException","Lambda.AWSLambdaException","Lambda.SdkClientException"],"IntervalSeconds":2,"MaxAttempts":6,"BackoffRate":2}],"Type":"Task","Resource":"",
+              {
+                "Fn::GetAtt": [
+                  "GetDayRacesUrlsStateMachineFunctionFD693639",
+                  "Arn",
+                ],
+              },
+              ""},"SendToQueueMap":{"Type":"Map","End":true,"ItemsPath":"$.messages","ItemSelector":{"messages.$":"$$.Map.Item.Value"},"ItemProcessor":{"ProcessorConfig":{"Mode":"INLINE"},"StartAt":"SendToQueue","States":{"SendToQueue":{"End":true,"Type":"Task","Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::aws-sdk:sqs:sendMessageBatch","Parameters":{"Entries.$":"$.messages","QueueUrl":"",
+              {
+                "Ref": "DayRaceQueueA2B24540",
+              },
+              ""}}}}}}}",
+            ],
+          ],
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "GetDayRacesUrlsStateMachineRole93905194",
+            "Arn",
+          ],
+        },
+        "TracingConfiguration": {
+          "Enabled": true,
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "GetDayRacesUrlsStateMachineFunctionFD693639": {
+      "DependsOn": [
+        "GetDayRacesUrlsStateMachineFunctionServiceRoleDefaultPolicy49DED100",
+        "GetDayRacesUrlsStateMachineFunctionServiceRole3635C9A8",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-ap-northeast-1",
+          },
+          "S3Key": "9e68bc04be31452b36d376b1f41664bb68bdecb4a980e2753306700aa276bff5.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+          },
+        },
+        "FunctionName": "STACKNAME-GetDayRacesUrlsFunction",
+        "Handler": "index.handler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "GetDayRacesUrlsStateMachineFunctionLogGroupE01B97D1",
+          },
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "GetDayRacesUrlsStateMachineFunctionServiceRole3635C9A8",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs20.x",
+        "Timeout": 60,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GetDayRacesUrlsStateMachineFunctionLogGroupE01B97D1": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "LogGroupName": "STACKNAME/GetDayRacesUrlsFunction",
+        "RetentionInDays": 30,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "GetDayRacesUrlsStateMachineFunctionServiceRole3635C9A8": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GetDayRacesUrlsStateMachineFunctionServiceRoleDefaultPolicy49DED100": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GetDayRacesUrlsStateMachineFunctionServiceRoleDefaultPolicy49DED100",
+        "Roles": [
+          {
+            "Ref": "GetDayRacesUrlsStateMachineFunctionServiceRole3635C9A8",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GetDayRacesUrlsStateMachineRole93905194": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "states.ap-northeast-1.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GetDayRacesUrlsStateMachineRoleDefaultPolicyAC43692A": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "GetDayRacesUrlsStateMachineFunctionFD693639",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "GetDayRacesUrlsStateMachineFunctionFD693639",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": "sqs:SendMessage",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "DayRaceQueueA2B24540",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+                "xray:GetSamplingRules",
+                "xray:GetSamplingTargets",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GetDayRacesUrlsStateMachineRoleDefaultPolicyAC43692A",
+        "Roles": [
+          {
+            "Ref": "GetDayRacesUrlsStateMachineRole93905194",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GetRaceUrlsStateMachineF5E0D7EE": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "GetRaceUrlsStateMachineRoleDefaultPolicyFAF44251",
+        "GetRaceUrlsStateMachineRoleA9CAF7E3",
+      ],
+      "Properties": {
+        "DefinitionString": {
+          "Fn::Join": [
+            "",
+            [
+              "{"StartAt":"GetRaceUrls","States":{"GetRaceUrls":{"Next":"SendToQueueMap","Retry":[{"ErrorEquals":["Lambda.ClientExecutionTimeoutException","Lambda.ServiceException","Lambda.AWSLambdaException","Lambda.SdkClientException"],"IntervalSeconds":2,"MaxAttempts":6,"BackoffRate":2}],"Type":"Task","Resource":"",
+              {
+                "Fn::GetAtt": [
+                  "GetRaceUrlsStateMachineFunction329F8B1D",
+                  "Arn",
+                ],
+              },
+              ""},"SendToQueueMap":{"Type":"Map","ResultPath":"$.mapresult","Next":"Pass","ItemsPath":"$.messages","ItemSelector":{"messages.$":"$$.Map.Item.Value"},"ItemProcessor":{"ProcessorConfig":{"Mode":"INLINE"},"StartAt":"SendToQueue","States":{"SendToQueue":{"End":true,"Type":"Task","Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::aws-sdk:sqs:sendMessageBatch","Parameters":{"Entries.$":"$.messages","QueueUrl":"",
+              {
+                "Ref": "RaceQueueE818AC65",
+              },
+              ""}}}}},"Pass":{"Type":"Pass","Result":{"batchItemFailures":[]},"End":true}}}",
+            ],
+          ],
+        },
+        "LoggingConfiguration": {
+          "Destinations": [
+            {
+              "CloudWatchLogsLogGroup": {
+                "LogGroupArn": {
+                  "Fn::GetAtt": [
+                    "GetRaceUrlsStateMachineLogGroup4C207883",
+                    "Arn",
+                  ],
+                },
+              },
+            },
+          ],
+          "IncludeExecutionData": true,
+          "Level": "ALL",
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "GetRaceUrlsStateMachineRoleA9CAF7E3",
+            "Arn",
+          ],
+        },
+        "StateMachineType": "EXPRESS",
+        "TracingConfiguration": {
+          "Enabled": true,
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "GetRaceUrlsStateMachineFunction329F8B1D": {
+      "DependsOn": [
+        "GetRaceUrlsStateMachineFunctionServiceRoleDefaultPolicy757D403F",
+        "GetRaceUrlsStateMachineFunctionServiceRole94743D7D",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-ap-northeast-1",
+          },
+          "S3Key": "ef813c5cac5df9d9efb2e36218db3126a14356a708b34730acb802a7de2fb318.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+          },
+        },
+        "FunctionName": "STACKNAME-GetRaceUrlsFunction",
+        "Handler": "index.handler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "GetRaceUrlsStateMachineFunctionLogGroupE5CDA0FA",
+          },
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "GetRaceUrlsStateMachineFunctionServiceRole94743D7D",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs20.x",
+        "Timeout": 60,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GetRaceUrlsStateMachineFunctionLogGroupE5CDA0FA": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "LogGroupName": "STACKNAME/GetRaceUrlsFunction",
+        "RetentionInDays": 30,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "GetRaceUrlsStateMachineFunctionServiceRole94743D7D": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GetRaceUrlsStateMachineFunctionServiceRoleDefaultPolicy757D403F": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GetRaceUrlsStateMachineFunctionServiceRoleDefaultPolicy757D403F",
+        "Roles": [
+          {
+            "Ref": "GetRaceUrlsStateMachineFunctionServiceRole94743D7D",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GetRaceUrlsStateMachineLogGroup4C207883": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "LogGroupName": "STACKNAME/GetRaceUrlsStateMachine",
+        "RetentionInDays": 30,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "GetRaceUrlsStateMachineRoleA9CAF7E3": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "states.ap-northeast-1.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GetRaceUrlsStateMachineRoleDefaultPolicyFAF44251": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "GetRaceUrlsStateMachineFunction329F8B1D",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "GetRaceUrlsStateMachineFunction329F8B1D",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": "sqs:SendMessage",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "RaceQueueE818AC65",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "logs:CreateLogDelivery",
+                "logs:GetLogDelivery",
+                "logs:UpdateLogDelivery",
+                "logs:DeleteLogDelivery",
+                "logs:ListLogDeliveries",
+                "logs:PutResourcePolicy",
+                "logs:DescribeResourcePolicies",
+                "logs:DescribeLogGroups",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+                "xray:GetSamplingRules",
+                "xray:GetSamplingTargets",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GetRaceUrlsStateMachineRoleDefaultPolicyFAF44251",
+        "Roles": [
+          {
+            "Ref": "GetRaceUrlsStateMachineRoleA9CAF7E3",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "RaceQueueE818AC65": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "MessageRetentionPeriod": 900,
+        "VisibilityTimeout": 300,
+      },
+      "Type": "AWS::SQS::Queue",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "RaceQueueFunctionA35163B8": {
+      "DependsOn": [
+        "RaceQueueFunctionServiceRoleDefaultPolicy87628304",
+        "RaceQueueFunctionServiceRole93717D94",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-ap-northeast-1",
+          },
+          "S3Key": "dd8bc8add14b3aa9e463d9c41b4dd3f8c0a4bf4d3b06987dd62438f63b56c442.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+            "CACHE_BUCKET": "cachebucket",
+            "CACHE_PREFIX": "CACHEPREFIX",
+          },
+        },
+        "FunctionName": "STACKNAME-GetRaceFunction",
+        "Handler": "index.handler",
+        "LoggingConfig": {
+          "LogGroup": {
+            "Ref": "RaceQueueFunctionLogGroup5EE9C7C3",
+          },
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "RaceQueueFunctionServiceRole93717D94",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs20.x",
+        "Timeout": 300,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "RaceQueueFunctionLogGroup5EE9C7C3": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "LogGroupName": "STACKNAME/GetRaceFunction",
+        "RetentionInDays": 30,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "RaceQueueFunctionServiceRole93717D94": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "RaceQueueFunctionServiceRoleDefaultPolicy87628304": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sqs:ReceiveMessage",
+                "sqs:ChangeMessageVisibility",
+                "sqs:GetQueueUrl",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "RaceQueueE818AC65",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::cachebucket",
+                    ],
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::cachebucket/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "RaceQueueFunctionServiceRoleDefaultPolicy87628304",
+        "Roles": [
+          {
+            "Ref": "RaceQueueFunctionServiceRole93717D94",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "RaceQueueFunctionSqsEventSourceMyTestStackRaceQueue43034716FD8132E7": {
+      "Properties": {
+        "BatchSize": 10,
+        "EventSourceArn": {
+          "Fn::GetAtt": [
+            "RaceQueueE818AC65",
+            "Arn",
+          ],
+        },
+        "FunctionName": {
+          "Ref": "RaceQueueFunctionA35163B8",
+        },
+        "FunctionResponseTypes": [
+          "ReportBatchItemFailures",
+        ],
+        "MaximumBatchingWindowInSeconds": 60,
+        "ScalingConfig": {
+          "MaximumConcurrency": 2,
+        },
+      },
+      "Type": "AWS::Lambda::EventSourceMapping",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
