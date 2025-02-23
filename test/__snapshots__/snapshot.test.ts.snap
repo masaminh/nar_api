@@ -36,7 +36,7 @@ exports[`snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-ap-northeast-1",
           },
-          "S3Key": "fb7217da287a0e2447cad9df9864f15fc0ddca0a3d71903be2a77f6b6fb59add.zip",
+          "S3Key": "HASH-REPLACED.zip",
         },
         "Environment": {
           "Variables": {
@@ -212,7 +212,7 @@ exports[`snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-ap-northeast-1",
           },
-          "S3Key": "6271cddb2ec8dede242e6d7bcd23fde5d5d43d69266b687ee2a9f44545327936.zip",
+          "S3Key": "HASH-REPLACED.zip",
         },
         "Environment": {
           "Variables": {
@@ -468,7 +468,7 @@ exports[`snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-ap-northeast-1",
           },
-          "S3Key": "9e68bc04be31452b36d376b1f41664bb68bdecb4a980e2753306700aa276bff5.zip",
+          "S3Key": "HASH-REPLACED.zip",
         },
         "FunctionName": "STACKNAME-GetDayRacesUrlsFunction",
         "Handler": "index.handler",
@@ -707,7 +707,7 @@ exports[`snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-ap-northeast-1",
           },
-          "S3Key": "ef813c5cac5df9d9efb2e36218db3126a14356a708b34730acb802a7de2fb318.zip",
+          "S3Key": "HASH-REPLACED.zip",
         },
         "FunctionName": "STACKNAME-GetRaceUrlsFunction",
         "Handler": "index.handler",
@@ -918,7 +918,7 @@ exports[`snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-ap-northeast-1",
           },
-          "S3Key": "dd8bc8add14b3aa9e463d9c41b4dd3f8c0a4bf4d3b06987dd62438f63b56c442.zip",
+          "S3Key": "HASH-REPLACED.zip",
         },
         "Environment": {
           "Variables": {
