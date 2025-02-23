@@ -3,6 +3,7 @@ import {
   S3Client,
   ListObjectsV2Command,
   GetObjectCommand,
+  StorageClass,
 } from '@aws-sdk/client-s3';
 import {Upload} from '@aws-sdk/lib-storage';
 import {getTracer} from './powertools';
@@ -52,6 +53,7 @@ export async function upload(
       Bucket: bucket,
       Key: key,
       Body: body,
+      StorageClass: StorageClass.INTELLIGENT_TIERING,
     },
   });
 

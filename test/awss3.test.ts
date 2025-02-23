@@ -5,19 +5,23 @@ import {
   ListObjectsV2Command,
   GetObjectCommand,
   type GetObjectCommandOutput,
-  CreateMultipartUploadCommand,
-  UploadPartCommand,
+  StorageClass,
 } from '@aws-sdk/client-s3';
 import {sdkStreamMixin} from '@smithy/util-stream';
 import {mockClient} from 'aws-sdk-client-mock';
 import 'aws-sdk-client-mock-jest';
 import {listObjects, getObject, upload} from '../functions/common/awss3';
+import {Upload} from '@aws-sdk/lib-storage';
 
 const s3Mock = mockClient(S3Client);
+
+jest.mock('@aws-sdk/lib-storage');
+const uploadMock = jest.mocked(Upload);
 
 describe('awss3', () => {
   afterEach(() => {
     s3Mock.reset();
+    uploadMock.mockReset();
   });
 
   it('listObjects', async () => {
@@ -69,9 +73,15 @@ describe('awss3', () => {
   });
 
   it('upload', async () => {
-    s3Mock.on(CreateMultipartUploadCommand).resolves({UploadId: '1'});
-    s3Mock.on(UploadPartCommand).resolves({ETag: '1'});
+    const uploadDoneMock = jest.fn().mockResolvedValue({});
+    uploadMock.mockReturnValue({done: uploadDoneMock} as unknown as Upload);
     await upload('BUCKET', 'KEY', Readable.from(Buffer.from('hello')));
-    // 例外が発生していないことのみ確認する
+    expect(uploadMock).toHaveBeenCalledTimes(1);
+    expect(uploadMock.mock.calls[0][0].params).toMatchObject({
+      Bucket: 'BUCKET',
+      Key: 'KEY',
+      StorageClass: StorageClass.INTELLIGENT_TIERING,
+    });
+    expect(uploadDoneMock).toHaveBeenCalledTimes(1);
   });
 });
