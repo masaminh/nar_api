@@ -22,7 +22,7 @@
     "compile": "tsc",
     "fix": "gts fix",
     "_prepare": "npm run compile",
-    "pretest": "npm run compile",
+    "pretest": "npm run compile && npm run synth",
     "posttest": "npm run lint"
   },
   "devDependencies": {
