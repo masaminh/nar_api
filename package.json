@@ -52,7 +52,7 @@
     "@aws-sdk/lib-storage": "^3.645.0",
     "@codegenie/serverless-express": "^4.14.0",
     "@middy/core": "^4.0.0",
-    "aws-cdk-lib": "2.186.0",
+    "aws-cdk-lib": "2.187.0",
     "axios": "^1.8.2",
     "cheerio": "^1.0.0-rc.12",
     "constructs": "^10.4.2",
