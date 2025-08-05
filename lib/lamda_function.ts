@@ -9,9 +9,9 @@ interface LambdaFunctionProps {
   readonly entry: string;
   readonly handler: string;
   readonly functionName: string;
-  readonly memorySize?: number | undefined;
+  readonly memorySize?: number;
   readonly timeout: cdk.Duration;
-  readonly environment?: {[key: string]: string} | undefined;
+  readonly environment?: {[key: string]: string};
 }
 
 export class LambdaFunction extends Construct {
