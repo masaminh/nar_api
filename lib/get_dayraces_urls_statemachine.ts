@@ -16,7 +16,7 @@ export class GetDayRacesUrlsStateMachine extends Construct {
   constructor(
     scope: Construct,
     id: string,
-    props: GetDayRacesUrlsStateMachineProps
+    props: GetDayRacesUrlsStateMachineProps,
   ) {
     super(scope, id);
 
@@ -49,7 +49,7 @@ export class GetDayRacesUrlsStateMachine extends Construct {
         },
         iamAction: 'sqs:SendMessage',
         iamResources: [props.queue.queueArn],
-      })
+      }),
     );
 
     this.stateMachine = new sfn.StateMachine(this, 'Default', {

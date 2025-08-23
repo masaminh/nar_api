@@ -80,7 +80,7 @@ async function getRaceUrlsHandler(input: unknown): Promise<OutputType> {
         }
 
         return true;
-      }
+      },
     );
   }
 

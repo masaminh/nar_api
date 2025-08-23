@@ -14,7 +14,7 @@ describe('getEnvironment', () => {
   it('getEnvironment', () => {
     process.env.GET_ENVIRONMENT_TEST = 'GET_ENVIRONMENT_TEST_VALUE';
     expect(getEnvironment('GET_ENVIRONMENT_TEST')).toBe(
-      'GET_ENVIRONMENT_TEST_VALUE'
+      'GET_ENVIRONMENT_TEST_VALUE',
     );
   });
 

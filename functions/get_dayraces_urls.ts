@@ -35,7 +35,7 @@ function isInputType(arg: unknown): arg is InputType {
 
 function getDayRaceUrlString(
   startTime: DateTime,
-  href: string | undefined
+  href: string | undefined,
 ): string | undefined {
   if (href === undefined) {
     return undefined;
@@ -90,7 +90,7 @@ async function getDayRacesUrlsHandler(input: unknown): Promise<OutputType> {
 
   const messages = chunk(
     urls.map(v => ({Id: randomUUID(), MessageBody: v})),
-    10
+    10,
   );
   return {
     messages,

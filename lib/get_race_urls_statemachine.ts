@@ -17,7 +17,7 @@ export class GetRaceUrlsStateMachine extends Construct {
   constructor(
     scope: Construct,
     id: string,
-    props: GetRaceUrlsStateMachineProps
+    props: GetRaceUrlsStateMachineProps,
   ) {
     super(scope, id);
 
@@ -51,7 +51,7 @@ export class GetRaceUrlsStateMachine extends Construct {
         },
         iamAction: 'sqs:SendMessage',
         iamResources: [props.queue.queueArn],
-      })
+      }),
     );
 
     this.stateMachine = new sfn.StateMachine(this, 'Default', {
@@ -59,8 +59,8 @@ export class GetRaceUrlsStateMachine extends Construct {
         funcTask.next(mapTask).next(
           new sfn.Pass(this, 'Pass', {
             result: sfn.Result.fromObject({batchItemFailures: []}),
-          })
-        )
+          }),
+        ),
       ),
       stateMachineType: sfn.StateMachineType.EXPRESS,
       logs: {

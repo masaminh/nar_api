@@ -52,23 +52,23 @@ describe('get_races', () => {
           } as SQSRecord,
         ],
       },
-      {} as Context
+      {} as Context,
     );
     expect(mockAxios.get).toHaveBeenCalledTimes(2);
     expect(mockAxios.get).toHaveBeenNthCalledWith(
       1,
       'https://example.com/url1?k_raceDate=2024%2f01%2f02&k_raceNo=3&k_babaCode=4',
-      {responseType: 'stream'}
+      {responseType: 'stream'},
     );
     expect(mockAxios.get).toHaveBeenNthCalledWith(
       2,
       'https://example.com/url3?k_raceDate=2025%2f05%2f06&k_raceNo=7&k_babaCode=8',
-      {responseType: 'stream'}
+      {responseType: 'stream'},
     );
     expect(mockUpload).toHaveBeenCalledTimes(1);
     expect(mockUpload.mock.calls[0][0]).toBe('CACHE_BUCKET_VALUE');
     expect(mockUpload.mock.calls[0][1]).toBe(
-      'CACHE_PREFIX_VALUE/RACE/2024/01/02/202401020403.gz'
+      'CACHE_PREFIX_VALUE/RACE/2024/01/02/202401020403.gz',
     );
     expect(response).toEqual({
       batchItemFailures: [{itemIdentifier: 'MESSAGEID3'}],

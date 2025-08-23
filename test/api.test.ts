@@ -57,7 +57,7 @@ describe('api', () => {
       raceids: ['RACEID1', 'RACEID2'],
     });
     const result = await request(app).get(
-      '/raceids?date=2024-01-02&date=2024-01-02'
+      '/raceids?date=2024-01-02&date=2024-01-02',
     );
     expect(result.status).toBe(400);
   });

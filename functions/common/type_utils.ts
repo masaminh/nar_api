@@ -3,7 +3,7 @@
 type WouldBe<T> = {[P in keyof T]?: unknown};
 
 export function isObject<T extends object>(
-  value: unknown
+  value: unknown,
 ): value is WouldBe<T> {
   return typeof value === 'object' && value !== null;
 }

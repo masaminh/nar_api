@@ -28,7 +28,7 @@ describe('get_races_urls', () => {
     });
     const response = await handler(
       [{messageId: 'MESSAGEID1', body: 'https://example.com/url1'}],
-      {} as Context
+      {} as Context,
     );
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
     expect(mockAxios.get).toHaveBeenCalledWith('https://example.com/url1', {
@@ -47,7 +47,7 @@ describe('get_races_urls', () => {
     mockAxios.get.mockRejectedValueOnce(new Error());
     const response = await handler(
       [{messageId: 'MESSAGEID1', body: 'https://example.com/url1'}],
-      {} as Context
+      {} as Context,
     );
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
     expect(mockAxios.get).toHaveBeenCalledWith('https://example.com/url1', {

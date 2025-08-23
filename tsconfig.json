@@ -6,7 +6,10 @@
     "esModuleInterop": true,
   },
   "include": [
-    "src/**/*.ts",
+    "lib/**/*.ts",
+    "bin/**/*.ts",
+    "functions/**/*.ts",
+    "server.ts",
     "test/**/*.ts"
   ]
 }

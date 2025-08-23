@@ -32,7 +32,7 @@ export class ApiFunction extends Construct {
     const bucket = s3.Bucket.fromBucketName(
       this,
       'CacheBucket',
-      props.cacheBucket
+      props.cacheBucket,
     );
 
     bucket.grantRead(func);

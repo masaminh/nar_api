@@ -18,7 +18,7 @@ export type ListObjectsResult = {
 
 export async function listObjects(
   bucket: string,
-  prefix: string
+  prefix: string,
 ): Promise<ListObjectsResult> {
   const command = new ListObjectsV2Command({
     Bucket: bucket,
@@ -34,7 +34,7 @@ export async function listObjects(
 
 export async function getObject(
   bucket: string,
-  key: string
+  key: string,
 ): Promise<Readable> {
   const command = new GetObjectCommand({Bucket: bucket, Key: key});
   const output = await client.send(command);
@@ -45,7 +45,7 @@ export async function getObject(
 export async function upload(
   bucket: string,
   key: string,
-  body: Readable
+  body: Readable,
 ): Promise<void> {
   const upload = new Upload({
     client,

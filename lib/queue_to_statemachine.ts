@@ -40,7 +40,7 @@ export class QueueToStateMachine extends Construct {
         maxBatchingWindow: cdk.Duration.seconds(60),
         reportBatchItemFailures: true,
         maxConcurrency: 2,
-      })
+      }),
     );
 
     props.stateMachine.grantStartSyncExecution(func);
