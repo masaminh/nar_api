@@ -7,7 +7,7 @@ import {getRace} from './api_get_race';
 const app = express();
 
 function asyncWrapper(
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>,
 ) {
   return (req: Request, res: Response, next: NextFunction) => {
     Log.info(`start: ${req.url}`);
@@ -38,7 +38,7 @@ app.get(
 
     const raceids = await getRaceIds(date);
     res.json(raceids);
-  })
+  }),
 );
 
 app.get(
@@ -58,7 +58,7 @@ app.get(
 
     const race = await getRace(raceid);
     res.json(race);
-  })
+  }),
 );
 
 app.all('/:wildcard', (req, res) => {

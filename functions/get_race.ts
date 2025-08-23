@@ -65,7 +65,7 @@ async function getRaceHandler(event: SQSEvent): Promise<SQSBatchResponse> {
     await stream.promises.pipeline(
       response.data,
       zlib.createGzip(),
-      fs.createWriteStream(tempPath)
+      fs.createWriteStream(tempPath),
     );
 
     await awsS3.upload(cacheBucket, key, fs.createReadStream(tempPath));

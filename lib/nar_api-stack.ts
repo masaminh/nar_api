@@ -31,7 +31,7 @@ export class NarApiStack extends cdk.Stack {
       {
         stackName: this.stackName,
         queue: raceQueue.queue,
-      }
+      },
     );
 
     const dayRaceQueue = new QueueToStateMachine(this, 'DayRaceQueue', {
@@ -45,7 +45,7 @@ export class NarApiStack extends cdk.Stack {
       {
         stackName: this.stackName,
         queue: dayRaceQueue.queue,
-      }
+      },
     );
 
     new StateMachineScheduler(this, 'GetDayRacesUrlsScheduler', {

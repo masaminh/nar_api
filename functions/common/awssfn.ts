@@ -6,7 +6,7 @@ const client = tracer.captureAWSv3Client(new SFNClient());
 
 export async function startSyncExecution(
   stateMachineArn: string | undefined,
-  input: object
+  input: object,
 ): Promise<unknown> {
   const command = new StartSyncExecutionCommand({
     stateMachineArn,

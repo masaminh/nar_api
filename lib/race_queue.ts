@@ -40,7 +40,7 @@ export class RaceQueue extends Construct {
         maxBatchingWindow: cdk.Duration.seconds(60),
         reportBatchItemFailures: true,
         maxConcurrency: 2,
-      })
+      }),
     );
 
     const bucket = s3.Bucket.fromBucketName(this, 'Bucket', props.cacheBucket);

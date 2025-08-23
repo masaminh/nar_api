@@ -27,7 +27,7 @@ describe('get_dayraces_urls', () => {
     });
     const response = await handler(
       {time: '2024-01-02T03:04:05Z'},
-      {} as Context
+      {} as Context,
     );
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
     expect(mockAxios.get).toHaveBeenCalledWith(NAR_CALENDAR_URL, {
@@ -72,7 +72,7 @@ describe('get_dayraces_urls', () => {
       });
     const response = await handler(
       {time: '2024-01-31T03:04:05Z'},
-      {} as Context
+      {} as Context,
     );
     expect(mockAxios.get).toHaveBeenCalledTimes(2);
     expect(mockAxios.get).toHaveBeenNthCalledWith(1, NAR_CALENDAR_URL, {
@@ -122,7 +122,7 @@ describe('get_dayraces_urls', () => {
     });
     const response = await handler(
       {time: '2024-01-02T03:04:05Z'},
-      {} as Context
+      {} as Context,
     );
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
     expect(mockAxios.get).toHaveBeenCalledWith(NAR_CALENDAR_URL, {
@@ -154,7 +154,7 @@ describe('get_dayraces_urls', () => {
     });
     const response = await handler(
       {time: '2024-01-02T03:04:05Z'},
-      {} as Context
+      {} as Context,
     );
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
     expect(mockAxios.get).toHaveBeenCalledWith(NAR_CALENDAR_URL, {
@@ -180,7 +180,7 @@ describe('get_dayraces_urls', () => {
 
   it('不正な時刻', async () => {
     await expect(() =>
-      handler({time: '2024-02-30T00:00:00Z'}, {} as Context)
+      handler({time: '2024-02-30T00:00:00Z'}, {} as Context),
     ).rejects.toThrow();
   });
 });

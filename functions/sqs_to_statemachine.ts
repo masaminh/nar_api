@@ -12,11 +12,11 @@ const tracer = getTracer();
 const stateMachineArn = getEnvironment('STATE_MACHINE_ARN');
 
 async function sqsToStatemachineHandler(
-  event: SQSEvent
+  event: SQSEvent,
 ): Promise<SQSBatchResponse> {
   const output = await awsSfn.startSyncExecution(
     stateMachineArn,
-    event.Records
+    event.Records,
   );
   return output as SQSBatchResponse;
 }

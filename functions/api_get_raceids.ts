@@ -9,7 +9,7 @@ type ReturnType = {
 };
 
 export async function getRaceIds(
-  date: DateTime<true> | DateTime<false>
+  date: DateTime<true> | DateTime<false>,
 ): Promise<ReturnType> {
   if (!date.isValid) {
     throw new Error('date.isValid must be true');

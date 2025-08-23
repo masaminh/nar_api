@@ -31,14 +31,14 @@ describe('sqs_to_statemachine', () => {
 
     const response = await handler(
       {Records: [{messageId: '1'} as SQSRecord]},
-      {} as Context
+      {} as Context,
     );
 
     expect(response).toEqual(startSyncExecutionResponse);
     expect(mockStartSyncExecution).toHaveBeenCalledTimes(1);
     expect(mockStartSyncExecution).toHaveBeenCalledWith(
       'STATE_MACHINE_ARN_VALUE',
-      [{messageId: '1'} as SQSRecord]
+      [{messageId: '1'} as SQSRecord],
     );
   });
 });
