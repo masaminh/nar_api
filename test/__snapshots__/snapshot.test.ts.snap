@@ -194,6 +194,7 @@ exports[`snapshot test 1`] = `
       "DeletionPolicy": "Delete",
       "Properties": {
         "MessageRetentionPeriod": 900,
+        "SqsManagedSseEnabled": true,
         "VisibilityTimeout": 300,
       },
       "Type": "AWS::SQS::Queue",
@@ -900,6 +901,7 @@ exports[`snapshot test 1`] = `
       "DeletionPolicy": "Delete",
       "Properties": {
         "MessageRetentionPeriod": 900,
+        "SqsManagedSseEnabled": true,
         "VisibilityTimeout": 300,
       },
       "Type": "AWS::SQS::Queue",
