@@ -5,6 +5,7 @@ import {getRaceIds} from './api_get_raceids';
 import {getRace} from './api_get_race';
 
 const app = express();
+app.disable('x-powered-by');
 
 function asyncWrapper(
   fn: (req: Request, res: Response, next: NextFunction) => Promise<void>,

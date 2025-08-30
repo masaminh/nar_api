@@ -19,6 +19,7 @@ export class QueueToStateMachine extends Construct {
     this.queue = new sqs.Queue(this, 'Default', {
       visibilityTimeout: cdk.Duration.minutes(5),
       retentionPeriod: cdk.Duration.minutes(15),
+      encryption: sqs.QueueEncryption.SQS_MANAGED,
     });
 
     // 本当はEventBridge Pipesを使いたかったが、MaxConcurrencyの制御ができないため、
