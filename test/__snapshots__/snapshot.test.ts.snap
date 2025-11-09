@@ -176,6 +176,20 @@ exports[`snapshot test 1`] = `
       },
       "Type": "AWS::IAM::Policy",
     },
+    "ApiFunctioninvokefunctionB5A175E4": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ApiFunctionCE271BD4",
+            "Arn",
+          ],
+        },
+        "InvokedViaFunctionUrl": true,
+        "Principal": "*",
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
     "ApiFunctioninvokefunctionurl0B8A0798": {
       "Properties": {
         "Action": "lambda:InvokeFunctionUrl",
