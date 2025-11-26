@@ -27,7 +27,7 @@ describe('NarApiStack', () => {
     for (const functionName of functionNames) {
       template.hasResourceProperties('AWS::Lambda::Function', {
         FunctionName: `${stackName}-${functionName}`,
-        Runtime: 'nodejs20.x',
+        Runtime: 'nodejs22.x',
       });
     }
   });
