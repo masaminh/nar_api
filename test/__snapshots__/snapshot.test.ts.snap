@@ -58,7 +58,7 @@ exports[`snapshot test 1`] = `
             "Arn",
           ],
         },
-        "Runtime": "nodejs20.x",
+        "Runtime": "nodejs22.x",
         "Timeout": 30,
         "TracingConfig": {
           "Mode": "Active",
@@ -249,7 +249,7 @@ exports[`snapshot test 1`] = `
             "Arn",
           ],
         },
-        "Runtime": "nodejs20.x",
+        "Runtime": "nodejs22.x",
         "Timeout": 300,
         "TracingConfig": {
           "Mode": "Active",
@@ -498,7 +498,7 @@ exports[`snapshot test 1`] = `
             "Arn",
           ],
         },
-        "Runtime": "nodejs20.x",
+        "Runtime": "nodejs22.x",
         "Timeout": 60,
         "TracingConfig": {
           "Mode": "Active",
@@ -737,7 +737,7 @@ exports[`snapshot test 1`] = `
             "Arn",
           ],
         },
-        "Runtime": "nodejs20.x",
+        "Runtime": "nodejs22.x",
         "Timeout": 60,
         "TracingConfig": {
           "Mode": "Active",
@@ -955,7 +955,7 @@ exports[`snapshot test 1`] = `
             "Arn",
           ],
         },
-        "Runtime": "nodejs20.x",
+        "Runtime": "nodejs22.x",
         "Timeout": 300,
         "TracingConfig": {
           "Mode": "Active",
