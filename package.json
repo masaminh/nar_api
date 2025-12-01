@@ -56,7 +56,7 @@
     "axios": "^1.12.2",
     "cheerio": "^1.0.0-rc.12",
     "constructs": "^10.4.2",
-    "express": "^5.0.1",
+    "express": "^5.2.0",
     "luxon": "^3.4.4",
     "source-map-support": "^0.5.21"
   }
