@@ -1,8 +1,8 @@
-import {Construct} from 'constructs';
-import * as cdk from 'aws-cdk-lib';
-import * as lambda from 'aws-cdk-lib/aws-lambda';
-import * as lambdaNodejs from 'aws-cdk-lib/aws-lambda-nodejs';
-import * as logs from 'aws-cdk-lib/aws-logs';
+import { Construct } from 'constructs'
+import * as cdk from 'aws-cdk-lib'
+import * as lambda from 'aws-cdk-lib/aws-lambda'
+import * as lambdaNodejs from 'aws-cdk-lib/aws-lambda-nodejs'
+import * as logs from 'aws-cdk-lib/aws-logs'
 
 interface LambdaFunctionProps {
   readonly stackName: string;
@@ -11,14 +11,14 @@ interface LambdaFunctionProps {
   readonly functionName: string;
   readonly memorySize?: number;
   readonly timeout: cdk.Duration;
-  readonly environment?: {[key: string]: string};
+  readonly environment?: { [key: string]: string };
 }
 
 export class LambdaFunction extends Construct {
-  readonly lambdaFunction: lambda.Function;
+  readonly lambdaFunction: lambda.Function
 
-  constructor(scope: Construct, id: string, props: LambdaFunctionProps) {
-    super(scope, id);
+  constructor (scope: Construct, id: string, props: LambdaFunctionProps) {
+    super(scope, id)
 
     this.lambdaFunction = new lambdaNodejs.NodejsFunction(this, 'Default', {
       entry: props.entry,
@@ -35,6 +35,6 @@ export class LambdaFunction extends Construct {
         retention: logs.RetentionDays.ONE_MONTH,
         removalPolicy: cdk.RemovalPolicy.DESTROY,
       }),
-    });
+    })
   }
 }

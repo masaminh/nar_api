@@ -1,24 +1,24 @@
-import {getEnvironment} from '../functions/common/get_environment';
+import { getEnvironment } from '../functions/common/get_environment'
 
-let env: NodeJS.ProcessEnv;
+let env: NodeJS.ProcessEnv
 
 describe('getEnvironment', () => {
   beforeAll(() => {
-    env = {...process.env};
-  });
+    env = { ...process.env }
+  })
 
   afterEach(() => {
-    process.env = {...env};
-  });
+    process.env = { ...env }
+  })
 
   it('getEnvironment', () => {
-    process.env.GET_ENVIRONMENT_TEST = 'GET_ENVIRONMENT_TEST_VALUE';
+    process.env.GET_ENVIRONMENT_TEST = 'GET_ENVIRONMENT_TEST_VALUE'
     expect(getEnvironment('GET_ENVIRONMENT_TEST')).toBe(
-      'GET_ENVIRONMENT_TEST_VALUE',
-    );
-  });
+      'GET_ENVIRONMENT_TEST_VALUE'
+    )
+  })
 
   it('getEnvironment: not found', () => {
-    expect(() => getEnvironment('GET_ENVIRONMENT_TEST')).toThrow();
-  });
-});
+    expect(() => getEnvironment('GET_ENVIRONMENT_TEST')).toThrow()
+  })
+})
