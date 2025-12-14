@@ -6,5 +6,6 @@
   "sonarlint.connectedMode.project": {
     "connectionId": "masaminh",
     "projectKey": "masaminh_nar_api"
-  }
+  },
+  "eslint.useFlatConfig": true
 }

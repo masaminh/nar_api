@@ -9,4 +9,4 @@ module.exports = {
   coverageDirectory: 'coverage',
   globalSetup: './jest.globalsetup.js',
   snapshotSerializers: ['<rootDir>/test/snapshot-plugin.ts'],
-};
+}

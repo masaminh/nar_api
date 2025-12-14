@@ -1,11 +1,11 @@
-import {Transform} from 'node:stream';
-import {pipeline} from 'node:stream/promises';
-import {createGunzip} from 'node:zlib';
-import {DateTime} from 'luxon';
-import * as cheerio from 'cheerio';
-import {getRaceDatePrefix} from './common/get_race_date_prefix';
-import {getEnvironment} from './common/get_environment';
-import {getObject as S3GetObject} from './common/awss3';
+import { Transform } from 'node:stream'
+import { pipeline } from 'node:stream/promises'
+import { createGunzip } from 'node:zlib'
+import { DateTime } from 'luxon'
+import * as cheerio from 'cheerio'
+import { getRaceDatePrefix } from './common/get_race_date_prefix'
+import { getEnvironment } from './common/get_environment'
+import { getObject as S3GetObject } from './common/awss3'
 
 const placeMap = new Map<string, string>([
   ['03', '帯広'],
@@ -23,13 +23,13 @@ const placeMap = new Map<string, string>([
   ['28', '姫路'],
   ['31', '高知'],
   ['32', '佐賀'],
-]);
+])
 
 type HorseType = {
   horseNumber: number | undefined;
   horseId: string | undefined;
   horseName: string;
-};
+}
 
 type ReturnType = {
   raceId: string;
@@ -38,56 +38,56 @@ type ReturnType = {
   raceNumber: number;
   raceName: string;
   horses: HorseType[];
-};
+}
 
-export async function getRace(raceId: string): Promise<ReturnType> {
+export async function getRace (raceId: string): Promise<ReturnType> {
   if (raceId.length !== 12) {
-    throw new Error('raceId.length must be 12');
+    throw new Error('raceId.length must be 12')
   }
 
-  const date = DateTime.fromISO(raceId.slice(0, 8));
+  const date = DateTime.fromISO(raceId.slice(0, 8))
   if (!date.isValid) {
-    throw new Error('date.isValid must be true');
+    throw new Error('date.isValid must be true')
   }
 
-  const bucket = getEnvironment('CACHE_BUCKET');
-  const prefix = getRaceDatePrefix(date);
+  const bucket = getEnvironment('CACHE_BUCKET')
+  const prefix = getRaceDatePrefix(date)
 
-  const objectStream = await S3GetObject(bucket, `${prefix}${raceId}.gz`);
+  const objectStream = await S3GetObject(bucket, `${prefix}${raceId}.gz`)
   const buftrans = new Transform({
-    transform(chunk, encoding, callback) {
-      callback(null, chunk);
+    transform (chunk, encoding, callback) {
+      callback(null, chunk)
     },
-  });
+  })
 
-  const bufs: Buffer[] = [];
+  const bufs: Buffer[] = []
   buftrans.on('data', chunk => {
-    bufs.push(chunk);
-  });
+    bufs.push(chunk)
+  })
 
-  await pipeline(objectStream, createGunzip(), buftrans);
+  await pipeline(objectStream, createGunzip(), buftrans)
 
-  const $ = cheerio.load(Buffer.concat(bufs));
-  const raceName = $('.raceTitle h3').text();
-  const place = placeMap.get(raceId.slice(8, 10)) ?? '';
-  const raceNumber = parseInt(raceId.slice(10, 12));
+  const $ = cheerio.load(Buffer.concat(bufs))
+  const raceName = $('.raceTitle h3').text()
+  const place = placeMap.get(raceId.slice(8, 10)) ?? ''
+  const raceNumber = parseInt(raceId.slice(10, 12))
 
-  const horses: HorseType[] = [];
+  const horses: HorseType[] = []
   $('tr.tBorder').each((i, el) => {
-    const horseNameAnchor = $('a.horseName', el);
-    let horseId: string | undefined = undefined;
-    const href = horseNameAnchor.attr('href');
+    const horseNameAnchor = $('a.horseName', el)
+    let horseId: string | undefined
+    const href = horseNameAnchor.attr('href')
     if (href !== undefined) {
-      const url = new URL(href, 'https://example.com/');
-      horseId = url.searchParams.get('k_lineageLoginCode') ?? undefined;
+      const url = new URL(href, 'https://example.com/')
+      horseId = url.searchParams.get('k_lineageLoginCode') ?? undefined
     }
 
     horses.push({
       horseNumber: parseInt($('td.horseNum', el).text()),
       horseId,
       horseName: horseNameAnchor.text(),
-    });
-  });
+    })
+  })
 
   return {
     raceId,
@@ -96,5 +96,5 @@ export async function getRace(raceId: string): Promise<ReturnType> {
     raceNumber,
     raceName,
     horses,
-  };
+  }
 }
