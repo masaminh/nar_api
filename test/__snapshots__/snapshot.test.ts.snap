@@ -51,7 +51,7 @@ exports[`snapshot test 1`] = `
             "Ref": "ApiFunctionLogGroupB51C7C52",
           },
         },
-        "MemorySize": 160,
+        "MemorySize": 192,
         "Role": {
           "Fn::GetAtt": [
             "ApiFunctionServiceRole52B9747B",

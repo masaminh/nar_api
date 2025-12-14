@@ -21,7 +21,7 @@ export class ApiFunction extends Construct {
       entry: 'functions/api_handler.ts',
       handler: 'handler',
       functionName: 'ApiFunction',
-      memorySize: 160,
+      memorySize: 192,
       timeout: cdk.Duration.seconds(30),
       environment: {
         CACHE_BUCKET: props.cacheBucket,
