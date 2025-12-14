@@ -44,7 +44,7 @@ describe('get_races_urls', () => {
   })
 
   it('axiosで例外', async () => {
-    mockAxios.get.mockRejectedValueOnce(new Error())
+    mockAxios.get.mockRejectedValueOnce(new Error('test'))
     const response = await handler(
       [{ messageId: 'MESSAGEID1', body: 'https://example.com/url1' }],
       {} as Context

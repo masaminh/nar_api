@@ -33,7 +33,7 @@ describe('get_races', () => {
       .mockResolvedValueOnce({
         data: Readable.from(Buffer.from('<html><body></body></html>')),
       })
-      .mockRejectedValueOnce(new Error())
+      .mockRejectedValueOnce(new Error('test'))
 
     const response = await handler(
       {

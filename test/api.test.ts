@@ -115,7 +115,7 @@ describe('api', () => {
   })
 
   it('/raceidsの呼び出し', async () => {
-    mockGetRaceIds.mockRejectedValue(new Error())
+    mockGetRaceIds.mockRejectedValue(new Error('test'))
     const result = await request(app).get('/raceids')
     expect(result.status).toBe(500)
   })

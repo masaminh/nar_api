@@ -26,7 +26,7 @@ describe('log', () => {
     }
 
     Log.initialize({ logger })
-    Log.info('test', new Error())
+    Log.info('test', new Error('test'))
     expect(logger.info).toHaveBeenCalledTimes(1)
     expect(logger.info).toHaveBeenCalledWith('test', expect.any(Error))
   })
@@ -52,7 +52,7 @@ describe('log', () => {
     }
 
     Log.initialize({ logger })
-    Log.warn('test', new Error())
+    Log.warn('test', new Error('test'))
     expect(logger.warn).toHaveBeenCalledTimes(1)
     expect(logger.warn).toHaveBeenCalledWith('test', expect.any(Error))
   })
@@ -78,7 +78,7 @@ describe('log', () => {
     }
 
     Log.initialize({ logger })
-    Log.error('test', new Error())
+    Log.error('test', new Error('test'))
     expect(logger.error).toHaveBeenCalledTimes(1)
     expect(logger.error).toHaveBeenCalledWith('test', expect.any(Error))
   })

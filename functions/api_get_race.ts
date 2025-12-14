@@ -70,7 +70,7 @@ export async function getRace (raceId: string): Promise<ReturnType> {
   const $ = cheerio.load(Buffer.concat(bufs))
   const raceName = $('.raceTitle h3').text()
   const place = placeMap.get(raceId.slice(8, 10)) ?? ''
-  const raceNumber = parseInt(raceId.slice(10, 12))
+  const raceNumber = Number.parseInt(raceId.slice(10, 12))
 
   const horses: HorseType[] = []
   $('tr.tBorder').each((i, el) => {
@@ -83,7 +83,7 @@ export async function getRace (raceId: string): Promise<ReturnType> {
     }
 
     horses.push({
-      horseNumber: parseInt($('td.horseNum', el).text()),
+      horseNumber: Number.parseInt($('td.horseNum', el).text()),
       horseId,
       horseName: horseNameAnchor.text(),
     })
