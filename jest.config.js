@@ -7,6 +7,7 @@ module.exports = {
   },
   collectCoverage: true,
   coverageDirectory: 'coverage',
+  coveragePathIgnorePatterns: ['./node_modules', 'jest.config.js', 'jest.globalsetup.js'],
   globalSetup: './jest.globalsetup.js',
   snapshotSerializers: ['<rootDir>/test/snapshot-plugin.ts'],
 }
