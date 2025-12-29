@@ -1,3 +1,3 @@
-module.exports = async () => {
+module.exports = async function setup () {
   process.env.TZ = 'UTC'
 }
