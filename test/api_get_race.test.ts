@@ -19,26 +19,34 @@ describe('api_get_race', () => {
   })
 
   it('getRace', async () => {
+    /* eslint-disable no-irregular-whitespace */
     const html = `
     <html>
       <body>
-        <div class="raceTitle">
-          <h3>レース名</h3>
+        <div id="mainContainer">
+          <article class="raceCard">
+            <div>
+              <h4>2024年1月2日（火）　帯　広　第4競走　12:34発走</h4>
+              <div class="raceTitle">
+                <h3>レース名</h3>
+              </div>
+              <table>
+                <tr class="tBorder">
+                  <td class="horseNum">1</td>
+                  <td>
+                    <a class="horseName" href="/?k_lineageLoginCode=HORSEID1">馬名1</a>
+                  </td>
+                </tr>
+                <tr class="tBorder">
+                  <td class="horseNum">2</td>
+                  <td>
+                    <a class="horseName" href="/?k_lineageLoginCode=HORSEID2">馬名2</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </article>
         </div>
-        <table>
-          <tr class="tBorder">
-            <td class="horseNum">1</td>
-            <td>
-              <a class="horseName" href="/?k_lineageLoginCode=HORSEID1">馬名1</a>
-            </td>
-          </tr>
-          <tr class="tBorder">
-            <td class="horseNum">2</td>
-            <td>
-              <a class="horseName" href="/?k_lineageLoginCode=HORSEID2">馬名2</a>
-            </td>
-          </tr>
-        </table>
       </body>
     </html>
     `
@@ -51,6 +59,7 @@ describe('api_get_race', () => {
     expect(result).toEqual({
       raceId: '202401020304',
       date: '2024-01-02',
+      time: '12:34',
       place: '帯広',
       raceNumber: 4,
       raceName: 'レース名',

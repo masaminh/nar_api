@@ -66,6 +66,7 @@ describe('api', () => {
     mockGetRace.mockResolvedValue({
       raceId: '202401020304',
       date: '2024-01-02',
+      time: '12:34',
       place: '場所',
       raceNumber: 4,
       raceName: 'レース名',
@@ -76,6 +77,7 @@ describe('api', () => {
     expect(result.body).toEqual({
       raceId: '202401020304',
       date: '2024-01-02',
+      time: '12:34',
       place: '場所',
       raceNumber: 4,
       raceName: 'レース名',
@@ -87,6 +89,7 @@ describe('api', () => {
     mockGetRace.mockResolvedValue({
       raceId: '202401020304',
       date: '2024-01-02',
+      time: '12:34',
       place: '場所',
       raceNumber: 4,
       raceName: 'レース名',
@@ -100,6 +103,7 @@ describe('api', () => {
     mockGetRace.mockResolvedValue({
       raceId: '202401020304',
       date: '2024-01-02',
+      time: '12:34',
       place: '場所',
       raceNumber: 4,
       raceName: 'レース名',
