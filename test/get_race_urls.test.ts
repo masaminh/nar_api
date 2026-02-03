@@ -2,19 +2,19 @@ import axios from 'axios'
 import type { Context } from 'aws-lambda'
 import { handler } from '../functions/get_race_urls'
 
-jest.mock('axios')
-jest.mock('@aws-lambda-powertools/logger')
-jest.mock('@aws-lambda-powertools/tracer')
+vitest.mock('axios')
+vitest.mock('@aws-lambda-powertools/logger')
+vitest.mock('@aws-lambda-powertools/tracer')
 
-const mockAxios = axios as jest.Mocked<typeof axios>
+const mockAxiosGet = vitest.spyOn(axios, 'get')
 
 describe('get_races_urls', () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    vitest.resetAllMocks()
   })
 
   it('正常系', async () => {
-    mockAxios.get.mockResolvedValueOnce({
+    mockAxiosGet.mockResolvedValueOnce({
       data: `
         <html><body><div class="raceTable">
         <table>
@@ -30,8 +30,8 @@ describe('get_races_urls', () => {
       [{ messageId: 'MESSAGEID1', body: 'https://example.com/url1' }],
       {} as Context
     )
-    expect(mockAxios.get).toHaveBeenCalledTimes(1)
-    expect(mockAxios.get).toHaveBeenCalledWith('https://example.com/url1', {
+    expect(mockAxiosGet).toHaveBeenCalledTimes(1)
+    expect(mockAxiosGet).toHaveBeenCalledWith('https://example.com/url1', {
       responseType: 'text',
     })
     expect(response).toEqual({
@@ -44,13 +44,13 @@ describe('get_races_urls', () => {
   })
 
   it('axiosで例外', async () => {
-    mockAxios.get.mockRejectedValueOnce(new Error('test'))
+    mockAxiosGet.mockRejectedValueOnce(new Error('test'))
     const response = await handler(
       [{ messageId: 'MESSAGEID1', body: 'https://example.com/url1' }],
       {} as Context
     )
-    expect(mockAxios.get).toHaveBeenCalledTimes(1)
-    expect(mockAxios.get).toHaveBeenCalledWith('https://example.com/url1', {
+    expect(mockAxiosGet).toHaveBeenCalledTimes(1)
+    expect(mockAxiosGet).toHaveBeenCalledWith('https://example.com/url1', {
       responseType: 'text',
     })
     expect(response).toEqual({

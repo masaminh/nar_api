@@ -5,17 +5,17 @@ import { getRaceDatePrefix } from '../functions/common/get_race_date_prefix'
 import { getObject as S3GetObject } from '../functions/common/awss3'
 import { Readable } from 'node:stream'
 
-jest.mock('../functions/common/get_environment')
-jest.mock('../functions/common/get_race_date_prefix')
-jest.mock('../functions/common/awss3')
+vitest.mock('../functions/common/get_environment')
+vitest.mock('../functions/common/get_race_date_prefix')
+vitest.mock('../functions/common/awss3')
 
-const getEnvironmentMock = jest.mocked(getEnvironment)
-const getRaceDatePrefixMock = jest.mocked(getRaceDatePrefix)
-const S3GetObjectMock = jest.mocked(S3GetObject)
+const getEnvironmentMock = vitest.mocked(getEnvironment)
+const getRaceDatePrefixMock = vitest.mocked(getRaceDatePrefix)
+const S3GetObjectMock = vitest.mocked(S3GetObject)
 
 describe('api_get_race', () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    vitest.resetAllMocks()
   })
 
   it('getRace', async () => {

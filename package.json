@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "jest",
+    "test": "TZ=UTC vitest run",
     "cdk": "cdk",
     "synth": "cdk synth",
     "deploy": "cdk deploy --require-approval never",
@@ -33,9 +33,10 @@
     "@types/luxon": "^3.4.2",
     "@types/node": "^22",
     "@types/supertest": "^6.0.2",
+    "@vitest/coverage-v8": "^4.0.18",
     "aws-cdk": "2.1031.2",
     "aws-sdk-client-mock": "^4.0.1",
-    "aws-sdk-client-mock-jest": "^4.0.1",
+    "aws-sdk-client-mock-vitest": "^7.0.1",
     "esbuild": "^0.25.0",
     "eslint": "^9.39.2",
     "eslint-config-flat-gitignore": "^2.1.0",
@@ -44,7 +45,8 @@
     "supertest": "^7.1.0",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
-    "typescript": "~5.9.3"
+    "typescript": "~5.9.3",
+    "vitest": "^4.0.18"
   },
   "dependencies": {
     "@aws-lambda-powertools/logger": "^2.7.0",
