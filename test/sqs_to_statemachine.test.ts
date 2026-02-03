@@ -2,9 +2,9 @@ import type { Context, SQSBatchResponse, SQSRecord } from 'aws-lambda'
 import { startSyncExecution } from '../functions/common/awssfn'
 import { handler } from '../functions/sqs_to_statemachine'
 
-jest.mock('@aws-lambda-powertools/logger')
-jest.mock('@aws-lambda-powertools/tracer')
-jest.mock('../functions/common/get_environment', () => ({
+vitest.mock('@aws-lambda-powertools/logger')
+vitest.mock('@aws-lambda-powertools/tracer')
+vitest.mock('../functions/common/get_environment', () => ({
   getEnvironment: (name: string) => {
     if (name === 'STATE_MACHINE_ARN') {
       return 'STATE_MACHINE_ARN_VALUE'
@@ -12,15 +12,13 @@ jest.mock('../functions/common/get_environment', () => ({
     throw new Error(`unexpected name: ${name}`)
   },
 }))
-jest.mock('../functions/common/awssfn')
+vitest.mock('../functions/common/awssfn')
 
-const mockStartSyncExecution = startSyncExecution as jest.MockedFunction<
-  typeof startSyncExecution
->
+const mockStartSyncExecution = vitest.mocked(startSyncExecution)
 
 describe('sqs_to_statemachine', () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    vitest.resetAllMocks()
   })
 
   it('正常系', async () => {

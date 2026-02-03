@@ -4,17 +4,17 @@ import { listObjects } from '../functions/common/awss3'
 import { getEnvironment } from '../functions/common/get_environment'
 import { getRaceDatePrefix } from '../functions/common/get_race_date_prefix'
 
-jest.mock('../functions/common/awss3')
-jest.mock('../functions/common/get_environment')
-jest.mock('../functions/common/get_race_date_prefix')
+vitest.mock('../functions/common/awss3')
+vitest.mock('../functions/common/get_environment')
+vitest.mock('../functions/common/get_race_date_prefix')
 
-const listObjectsMock = jest.mocked(listObjects)
-const getEnvironmentMock = jest.mocked(getEnvironment)
-const getRaceDatePrefixMock = jest.mocked(getRaceDatePrefix)
+const listObjectsMock = vitest.mocked(listObjects)
+const getEnvironmentMock = vitest.mocked(getEnvironment)
+const getRaceDatePrefixMock = vitest.mocked(getRaceDatePrefix)
 
 describe('api_get_raceids', () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    vitest.resetAllMocks()
   })
 
   it('getRaceIds', async () => {

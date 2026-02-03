@@ -9,19 +9,17 @@ import {
 } from '@aws-sdk/client-s3'
 import { sdkStreamMixin } from '@smithy/util-stream'
 import { mockClient } from 'aws-sdk-client-mock'
-import 'aws-sdk-client-mock-jest'
 import { listObjects, getObject, upload } from '../functions/common/awss3'
 import { Upload } from '@aws-sdk/lib-storage'
 
 const s3Mock = mockClient(S3Client)
 
-jest.mock('@aws-sdk/lib-storage')
-const uploadMock = jest.mocked(Upload)
+vitest.mock('@aws-sdk/lib-storage')
 
 describe('awss3', () => {
   afterEach(() => {
     s3Mock.reset()
-    uploadMock.mockReset()
+    vitest.resetAllMocks()
   })
 
   it('listObjects', async () => {
@@ -73,15 +71,18 @@ describe('awss3', () => {
   })
 
   it('upload', async () => {
-    const uploadDoneMock = jest.fn().mockResolvedValue({})
-    uploadMock.mockReturnValue({ done: uploadDoneMock } as unknown as Upload)
-    await upload('BUCKET', 'KEY', Readable.from(Buffer.from('hello')))
-    expect(uploadMock).toHaveBeenCalledTimes(1)
-    expect(uploadMock.mock.calls[0][0].params).toMatchObject({
+    const mockUpload = { done: vitest.fn() }
+    const mockUploadConstructor = vitest.mocked(Upload).mockImplementation(function (this: unknown) {
+      return mockUpload
+    })
+
+    upload('BUCKET', 'KEY', Readable.from(Buffer.from('hello')))
+    expect(mockUploadConstructor).toHaveBeenCalledTimes(1)
+    expect(mockUploadConstructor.mock.calls[0][0].params).toMatchObject({
       Bucket: 'BUCKET',
       Key: 'KEY',
       StorageClass: StorageClass.INTELLIGENT_TIERING,
     })
-    expect(uploadDoneMock).toHaveBeenCalledTimes(1)
+    expect(mockUpload.done).toHaveBeenCalledTimes(1)
   })
 })

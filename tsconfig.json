@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
+    "types": ["vitest/globals"],
     "rootDir": ".",
     "outDir": "build",
     "esModuleInterop": true,

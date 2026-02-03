@@ -2,22 +2,21 @@ import type { Context } from 'aws-lambda'
 import axios from 'axios'
 import { handler } from '../functions/get_dayraces_urls'
 
-jest.mock('axios')
-jest.mock('@aws-lambda-powertools/logger')
-jest.mock('@aws-lambda-powertools/tracer')
-
-const mockAxios = axios as jest.Mocked<typeof axios>
+vitest.mock('axios')
+vitest.mock('@aws-lambda-powertools/logger')
+vitest.mock('@aws-lambda-powertools/tracer')
 
 const NAR_CALENDAR_URL =
   'https://www.keiba.go.jp/KeibaWeb/MonthlyConveneInfo/MonthlyConveneInfoTop'
 
 describe('get_dayraces_urls', () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    vitest.resetAllMocks()
   })
 
   it('正常系', async () => {
-    mockAxios.get.mockResolvedValueOnce({
+    const mockAxiosGet = vitest.spyOn(axios, 'get')
+    mockAxiosGet.mockResolvedValueOnce({
       data: `
         <html><body><div class="schedule">
         <a href="https://www.keiba.go.jp/url1?k_raceDate=2024%2f01%2f02"/>
@@ -29,8 +28,8 @@ describe('get_dayraces_urls', () => {
       { time: '2024-01-02T03:04:05Z' },
       {} as Context
     )
-    expect(mockAxios.get).toHaveBeenCalledTimes(1)
-    expect(mockAxios.get).toHaveBeenCalledWith(NAR_CALENDAR_URL, {
+    expect(mockAxiosGet).toHaveBeenCalledTimes(1)
+    expect(mockAxiosGet).toHaveBeenCalledWith(NAR_CALENDAR_URL, {
       params: { k_year: 2024, k_month: 1 },
       responseType: 'text',
     })
@@ -53,7 +52,8 @@ describe('get_dayraces_urls', () => {
   })
 
   it('正常系(月またぎ)', async () => {
-    mockAxios.get
+    const mockAxiosGet = vitest.spyOn(axios, 'get')
+    mockAxiosGet
       .mockResolvedValueOnce({
         data: `
       <html><body><div class="schedule">
@@ -74,12 +74,12 @@ describe('get_dayraces_urls', () => {
       { time: '2024-01-31T03:04:05Z' },
       {} as Context
     )
-    expect(mockAxios.get).toHaveBeenCalledTimes(2)
-    expect(mockAxios.get).toHaveBeenNthCalledWith(1, NAR_CALENDAR_URL, {
+    expect(mockAxiosGet).toHaveBeenCalledTimes(2)
+    expect(mockAxiosGet).toHaveBeenNthCalledWith(1, NAR_CALENDAR_URL, {
       params: { k_year: 2024, k_month: 1 },
       responseType: 'text',
     })
-    expect(mockAxios.get).toHaveBeenNthCalledWith(2, NAR_CALENDAR_URL, {
+    expect(mockAxiosGet).toHaveBeenNthCalledWith(2, NAR_CALENDAR_URL, {
       params: { k_year: 2024, k_month: 2 },
       responseType: 'text',
     })
@@ -112,7 +112,8 @@ describe('get_dayraces_urls', () => {
   })
 
   it('正常系(前日以前を除外)', async () => {
-    mockAxios.get.mockResolvedValueOnce({
+    const mockAxiosGet = vitest.spyOn(axios, 'get')
+    mockAxiosGet.mockResolvedValueOnce({
       data: `
       <html><body><div class="schedule">
       <a href="https://www.keiba.go.jp/url1?k_raceDate=2024%2f01%2f01"/>
@@ -124,8 +125,8 @@ describe('get_dayraces_urls', () => {
       { time: '2024-01-02T03:04:05Z' },
       {} as Context
     )
-    expect(mockAxios.get).toHaveBeenCalledTimes(1)
-    expect(mockAxios.get).toHaveBeenCalledWith(NAR_CALENDAR_URL, {
+    expect(mockAxiosGet).toHaveBeenCalledTimes(1)
+    expect(mockAxiosGet).toHaveBeenCalledWith(NAR_CALENDAR_URL, {
       params: { k_year: 2024, k_month: 1 },
       responseType: 'text',
     })
@@ -143,7 +144,8 @@ describe('get_dayraces_urls', () => {
   })
 
   it('リンクがないAタグ、必要なパラメータのないAタグ', async () => {
-    mockAxios.get.mockResolvedValueOnce({
+    const mockAxiosGet = vitest.spyOn(axios, 'get')
+    mockAxiosGet.mockResolvedValueOnce({
       data: `
       <html><body><div class="schedule">
       <a/>
@@ -156,8 +158,8 @@ describe('get_dayraces_urls', () => {
       { time: '2024-01-02T03:04:05Z' },
       {} as Context
     )
-    expect(mockAxios.get).toHaveBeenCalledTimes(1)
-    expect(mockAxios.get).toHaveBeenCalledWith(NAR_CALENDAR_URL, {
+    expect(mockAxiosGet).toHaveBeenCalledTimes(1)
+    expect(mockAxiosGet).toHaveBeenCalledWith(NAR_CALENDAR_URL, {
       params: { k_year: 2024, k_month: 1 },
       responseType: 'text',
     })

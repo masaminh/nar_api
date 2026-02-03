@@ -7,9 +7,9 @@ describe('log', () => {
 
   it('info: message', () => {
     const logger: Log.ILogger = {
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
+      info: vitest.fn(),
+      warn: vitest.fn(),
+      error: vitest.fn(),
     }
 
     Log.initialize({ logger })
@@ -20,9 +20,9 @@ describe('log', () => {
 
   it('info: message, error', () => {
     const logger: Log.ILogger = {
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
+      info: vitest.fn(),
+      warn: vitest.fn(),
+      error: vitest.fn(),
     }
 
     Log.initialize({ logger })
@@ -33,9 +33,9 @@ describe('log', () => {
 
   it('warn: message', () => {
     const logger: Log.ILogger = {
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
+      info: vitest.fn(),
+      warn: vitest.fn(),
+      error: vitest.fn(),
     }
 
     Log.initialize({ logger })
@@ -46,9 +46,9 @@ describe('log', () => {
 
   it('warn: message, error', () => {
     const logger: Log.ILogger = {
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
+      info: vitest.fn(),
+      warn: vitest.fn(),
+      error: vitest.fn(),
     }
 
     Log.initialize({ logger })
@@ -59,9 +59,9 @@ describe('log', () => {
 
   it('error: message', () => {
     const logger: Log.ILogger = {
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
+      info: vitest.fn(),
+      warn: vitest.fn(),
+      error: vitest.fn(),
     }
 
     Log.initialize({ logger })
@@ -72,9 +72,9 @@ describe('log', () => {
 
   it('error: message, error', () => {
     const logger: Log.ILogger = {
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
+      info: vitest.fn(),
+      warn: vitest.fn(),
+      error: vitest.fn(),
     }
 
     Log.initialize({ logger })

@@ -3,17 +3,17 @@ import app from '../functions/api'
 import { getRaceIds } from '../functions/api_get_raceids'
 import { getRace } from '../functions/api_get_race'
 
-jest.mock('@aws-lambda-powertools/logger')
-jest.mock('@aws-lambda-powertools/tracer')
-jest.mock('../functions/api_get_raceids')
-jest.mock('../functions/api_get_race')
+vitest.mock('@aws-lambda-powertools/logger')
+vitest.mock('@aws-lambda-powertools/tracer')
+vitest.mock('../functions/api_get_raceids')
+vitest.mock('../functions/api_get_race')
 
-const mockGetRaceIds = jest.mocked(getRaceIds)
-const mockGetRace = jest.mocked(getRace)
+const mockGetRaceIds = vitest.mocked(getRaceIds)
+const mockGetRace = vitest.mocked(getRace)
 
 describe('api', () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    vitest.resetAllMocks()
   })
 
   it('/raceidsの呼び出し', async () => {
