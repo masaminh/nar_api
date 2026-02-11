@@ -57,7 +57,7 @@
     "@codegenie/serverless-express": "^4.14.0",
     "@middy/core": "^4.0.0",
     "aws-cdk-lib": "2.222.0",
-    "axios": "^1.12.2",
+    "axios": "^1.13.5",
     "cheerio": "^1.0.0-rc.12",
     "constructs": "^10.4.2",
     "express": "^5.2.0",
