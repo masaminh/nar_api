@@ -2,7 +2,8 @@
   "name": "nar_api",
   "version": "0.1.0",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
   },
   "bin": {
     "nar_api": "bin/nar_api.js"

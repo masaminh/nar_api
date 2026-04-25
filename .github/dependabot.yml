@@ -9,7 +9,8 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - version-update:semver-major
+    open-pull-requests-limit: 5
+    cooldown:
+      semver-major-days: 7
+      semver-minor-days: 0
+      semver-patch-days: 0
