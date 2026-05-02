@@ -58,7 +58,7 @@
     "aws-cdk-lib": "^2.250.0",
     "axios": "^1.15.0",
     "cheerio": "^1.0.0-rc.12",
-    "constructs": "^10.4.2",
+    "constructs": "^10.6.0",
     "express": "^5.2.0",
     "luxon": "^3.7.2",
     "source-map-support": "^0.5.21"
