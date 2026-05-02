@@ -1,9 +1,10 @@
 {
   "name": "nar_api",
   "version": "0.1.0",
+  "packageManager": "npm@10.9.4",
   "engines": {
     "node": ">=22.0.0",
-    "npm": ">=10.0.0"
+    "npm": ">=10.9.4"
   },
   "bin": {
     "nar_api": "bin/nar_api.js"
