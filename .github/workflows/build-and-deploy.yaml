@@ -19,6 +19,8 @@ jobs:
         with:
           fetch-depth: 0 
       - uses: asdf-vm/actions/install@v4
+      - name: Enable Corepack (pin npm to packageManager)
+        run: corepack enable
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
