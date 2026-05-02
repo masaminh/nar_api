@@ -8,9 +8,6 @@
   "bin": {
     "nar_api": "bin/nar_api.js"
   },
-  "overrides": {
-    "@smithy/types": "3.3.0"
-  },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
