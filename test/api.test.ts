@@ -1,5 +1,9 @@
+import type { Request, Response } from 'express'
 import request from 'supertest'
-import app from '../functions/api'
+import app, {
+  handleGetRaceRequest,
+  raceidRouteParamIsString,
+} from '../functions/api'
 import { getRaceIds } from '../functions/api_get_raceids'
 import { getRace } from '../functions/api_get_race'
 
@@ -10,6 +14,24 @@ vitest.mock('../functions/api_get_race')
 
 const mockGetRaceIds = vitest.mocked(getRaceIds)
 const mockGetRace = vitest.mocked(getRace)
+
+describe('raceidRouteParamIsString', () => {
+  it('文字列なら true', () => {
+    expect(raceidRouteParamIsString('202401020304')).toBe(true)
+  })
+
+  it('配列なら false（@types/express 5 で params が string[] になり得るための分岐）', () => {
+    expect(raceidRouteParamIsString(['202401020304'])).toBe(false)
+  })
+
+  it('undefined なら false', () => {
+    expect(raceidRouteParamIsString(undefined)).toBe(false)
+  })
+
+  it('数値なら false', () => {
+    expect(raceidRouteParamIsString(202401020304)).toBe(false)
+  })
+})
 
 describe('api', () => {
   afterEach(() => {
@@ -111,6 +133,21 @@ describe('api', () => {
     })
     const result = await request(app).get('/races/202401400304')
     expect(result.status).toBe(400)
+  })
+
+  it('/races: raceid が文字列でないとき handleGetRaceRequest が 400', async () => {
+    const send = vitest.fn()
+    const status = vitest.fn().mockReturnValue({ send })
+    const req = {
+      params: { raceid: ['202401020304'] },
+    } as unknown as Request
+    const res = { status, send } as unknown as Response
+
+    await handleGetRaceRequest(req, res)
+
+    expect(status).toHaveBeenCalledWith(400)
+    expect(send).toHaveBeenCalledWith('Bad raceid parameter')
+    expect(mockGetRace).not.toHaveBeenCalled()
   })
 
   it('存在しないURL', async () => {

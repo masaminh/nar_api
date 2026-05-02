@@ -7,6 +7,11 @@ import { getRace } from './api_get_race'
 const app = express()
 app.disable('x-powered-by')
 
+/** @types/express 5 では route param が string 以外になり得るための絞り込み */
+export function raceidRouteParamIsString (value: unknown): value is string {
+  return typeof value === 'string'
+}
+
 function asyncWrapper (
   fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
 ) {
@@ -42,29 +47,34 @@ app.get(
   })
 )
 
+export async function handleGetRaceRequest (
+  req: Request,
+  res: Response
+): Promise<void> {
+  const raceidParam = req.params.raceid
+  if (!raceidRouteParamIsString(raceidParam)) {
+    res.status(400).send('Bad raceid parameter')
+    return
+  }
+  const raceid = raceidParam
+
+  if (raceid.length !== 12) {
+    res.status(400).send('Bad raceid parameter')
+    return
+  }
+
+  if (!DateTime.fromISO(raceid.slice(0, 8)).isValid) {
+    res.status(400).send('Bad raceid parameter')
+    return
+  }
+
+  const race = await getRace(raceid)
+  res.json(race)
+}
+
 app.get(
   '/races/:raceid',
-  asyncWrapper(async (req, res) => {
-    const raceidParam = req.params.raceid
-    if (typeof raceidParam !== 'string') {
-      res.status(400).send('Bad raceid parameter')
-      return
-    }
-    const raceid = raceidParam
-
-    if (raceid.length !== 12) {
-      res.status(400).send('Bad raceid parameter')
-      return
-    }
-
-    if (!DateTime.fromISO(raceid.slice(0, 8)).isValid) {
-      res.status(400).send('Bad raceid parameter')
-      return
-    }
-
-    const race = await getRace(raceid)
-    res.json(race)
-  })
+  asyncWrapper(handleGetRaceRequest)
 )
 
 app.all('/:wildcard', (req, res) => {
