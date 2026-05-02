@@ -14,3 +14,7 @@ updates:
       semver-major-days: 7
       semver-minor-days: 0
       semver-patch-days: 0
+    groups:
+      aws-lambda-powertools:
+        patterns:
+          - "@aws-lambda-powertools/*"
