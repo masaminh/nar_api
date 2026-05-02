@@ -45,7 +45,12 @@ app.get(
 app.get(
   '/races/:raceid',
   asyncWrapper(async (req, res) => {
-    const { raceid } = req.params
+    const raceidParam = req.params.raceid
+    if (typeof raceidParam !== 'string') {
+      res.status(400).send('Bad raceid parameter')
+      return
+    }
+    const raceid = raceidParam
 
     if (raceid.length !== 12) {
       res.status(400).send('Bad raceid parameter')
