@@ -50,7 +50,7 @@
   "dependencies": {
     "@aws-lambda-powertools/logger": "^2.33.0",
     "@aws-lambda-powertools/tracer": "^2.33.0",
-    "@aws-sdk/client-s3": "^3.981.0",
+    "@aws-sdk/client-s3": "^3.1045.0",
     "@aws-sdk/client-sfn": "^3.981.0",
     "@aws-sdk/lib-storage": "^3.981.0",
     "@codegenie/serverless-express": "^4.17.1",
