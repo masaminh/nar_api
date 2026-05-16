@@ -28,7 +28,7 @@ export class LambdaFunction extends Construct {
       memorySize: props.memorySize,
       timeout: props.timeout,
       tracing: lambda.Tracing.ACTIVE,
-      runtime: lambda.Runtime.NODEJS_22_X,
+      runtime: lambda.Runtime.NODEJS_24_X,
       environment: props.environment,
       logGroup: new logs.LogGroup(this, 'LogGroup', {
         logGroupName: `${props.stackName}/${props.functionName}`,
