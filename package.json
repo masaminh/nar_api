@@ -29,7 +29,7 @@
     "@types/aws-lambda": "^8.10.161",
     "@types/express": "^5.0.6",
     "@types/luxon": "^3.7.1",
-    "@types/node": "^24",
+    "@types/node": "^25",
     "@types/supertest": "^7.2.0",
     "@vitest/coverage-v8": "^4.1.5",
     "aws-cdk": "^2.1119.0",
