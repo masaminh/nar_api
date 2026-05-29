@@ -24,7 +24,7 @@
     "posttest": "npm run lint"
   },
   "devDependencies": {
-    "@smithy/util-stream": "^3.3.4",
+    "@smithy/util-stream": "^4.6.4",
     "@tsconfig/node24": "^24.0.4",
     "@types/aws-lambda": "^8.10.161",
     "@types/express": "^5.0.6",
