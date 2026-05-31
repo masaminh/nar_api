@@ -3,7 +3,7 @@ import * as cdk from 'aws-cdk-lib'
 import * as sqs from 'aws-cdk-lib/aws-sqs'
 import * as sfn from 'aws-cdk-lib/aws-stepfunctions'
 import * as sfnTasks from 'aws-cdk-lib/aws-stepfunctions-tasks'
-import { LambdaFunction } from './lamda_function'
+import { LambdaFunction } from './lamda_function.js'
 
 interface GetDayRacesUrlsStateMachineProps {
   readonly stackName: string;

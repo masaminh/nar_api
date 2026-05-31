@@ -1,6 +1,6 @@
 import { SFNClient, StartSyncExecutionCommand } from '@aws-sdk/client-sfn'
 import { mockClient } from 'aws-sdk-client-mock'
-import { startSyncExecution } from '../functions/common/awssfn'
+import { startSyncExecution } from '../functions/common/awssfn.js'
 
 const sfnMock = mockClient(SFNClient)
 

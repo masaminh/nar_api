@@ -1,13 +1,13 @@
 import { Readable } from 'node:stream'
 import axios from 'axios'
 import type { Context, SQSRecord } from 'aws-lambda'
-import { upload } from '../functions/common/awss3'
-import { handler } from '../functions/get_race'
+import { upload } from '../functions/common/awss3.js'
+import { handler } from '../functions/get_race.js'
 
 vitest.mock('axios')
 vitest.mock('@aws-lambda-powertools/logger')
 vitest.mock('@aws-lambda-powertools/tracer')
-vitest.mock('../functions/common/get_environment', () => ({
+vitest.mock('../functions/common/get_environment.js', () => ({
   getEnvironment: (name: string) => {
     if (name === 'CACHE_BUCKET') {
       return 'CACHE_BUCKET_VALUE'
@@ -18,7 +18,7 @@ vitest.mock('../functions/common/get_environment', () => ({
     throw new Error(`unexpected name: ${name}`)
   },
 }))
-vitest.mock('../functions/common/awss3')
+vitest.mock('../functions/common/awss3.js')
 
 const mockAxiosGet = vitest.spyOn(axios, 'get')
 const mockUpload = vitest.mocked(upload)

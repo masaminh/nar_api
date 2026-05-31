@@ -9,7 +9,7 @@ import {
 } from '@aws-sdk/client-s3'
 import { sdkStreamMixin } from '@smithy/util-stream'
 import { mockClient } from 'aws-sdk-client-mock'
-import { listObjects, getObject, upload } from '../functions/common/awss3'
+import { listObjects, getObject, upload } from '../functions/common/awss3.js'
 import { Upload } from '@aws-sdk/lib-storage'
 
 const s3Mock = mockClient(S3Client)

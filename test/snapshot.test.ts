@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib'
 import { Template } from 'aws-cdk-lib/assertions'
-import { NarApiStack } from '../lib/nar_api-stack'
+import { NarApiStack } from '../lib/nar_api-stack.js'
 
 const ignoreAssetHashSerializer = {
   test: (val: unknown) => typeof val === 'string',

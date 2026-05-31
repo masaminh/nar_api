@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/nar_api.ts",
+  "app": "node --enable-source-maps build/bin/nar_api.js",
   "watch": {
     "include": [
       "**"

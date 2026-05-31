@@ -1,5 +1,5 @@
 import { SFNClient, StartSyncExecutionCommand } from '@aws-sdk/client-sfn'
-import { getTracer } from './powertools'
+import { getTracer } from './powertools.js'
 
 const tracer = getTracer()
 const client = tracer.captureAWSv3Client(new SFNClient())

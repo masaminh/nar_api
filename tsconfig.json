@@ -5,6 +5,8 @@
     "rootDir": ".",
     "outDir": "build",
     "esModuleInterop": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   },
   "include": [
     "lib/**/*.ts",

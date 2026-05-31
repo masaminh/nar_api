@@ -1,4 +1,4 @@
-import * as Log from '../functions/common/log'
+import * as Log from '../functions/common/log.js'
 
 describe('log', () => {
   beforeEach(() => {

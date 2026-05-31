@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { getEnvironment } from './get_environment'
+import { getEnvironment } from './get_environment.js'
 
 export function getRaceDatePrefix (date: DateTime): string {
   const cachePrefix = getEnvironment('CACHE_PREFIX')

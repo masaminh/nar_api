@@ -1,5 +1,5 @@
-import app from './functions/api'
-import * as Log from './functions/common/log'
+import app from './functions/api.js'
+import * as Log from './functions/common/log.js'
 
 Log.initialize({
   logger: console,

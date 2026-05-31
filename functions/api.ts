@@ -1,8 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express'
 import { DateTime } from 'luxon'
-import * as Log from './common/log'
-import { getRaceIds } from './api_get_raceids'
-import { getRace } from './api_get_race'
+import * as Log from './common/log.js'
+import { getRaceIds } from './api_get_raceids.js'
+import { getRace } from './api_get_race.js'
 
 const app = express()
 app.disable('x-powered-by')

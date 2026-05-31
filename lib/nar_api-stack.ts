@@ -1,11 +1,11 @@
 import * as cdk from 'aws-cdk-lib'
 import { Construct } from 'constructs'
-import { StateMachineScheduler } from './statemachine_scheduler'
-import { GetDayRacesUrlsStateMachine } from './get_dayraces_urls_statemachine'
-import { GetRaceUrlsStateMachine } from './get_race_urls_statemachine'
-import { QueueToStateMachine } from './queue_to_statemachine'
-import { RaceQueue } from './race_queue'
-import { ApiFunction } from './api_function'
+import { StateMachineScheduler } from './statemachine_scheduler.js'
+import { GetDayRacesUrlsStateMachine } from './get_dayraces_urls_statemachine.js'
+import { GetRaceUrlsStateMachine } from './get_race_urls_statemachine.js'
+import { QueueToStateMachine } from './queue_to_statemachine.js'
+import { RaceQueue } from './race_queue.js'
+import { ApiFunction } from './api_function.js'
 
 interface NarApiStackProps extends cdk.StackProps {
   stage: string;

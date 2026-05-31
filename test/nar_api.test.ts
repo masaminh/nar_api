@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { Template } from 'aws-cdk-lib/assertions'
 import * as cdk from 'aws-cdk-lib'
-import { NarApiStack } from '../lib/nar_api-stack'
+import { NarApiStack } from '../lib/nar_api-stack.js'
 
 const functionNames: readonly string[] = [
   'GetDayRacesUrlsFunction',

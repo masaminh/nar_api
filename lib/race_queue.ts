@@ -3,7 +3,7 @@ import * as cdk from 'aws-cdk-lib'
 import * as eventSource from 'aws-cdk-lib/aws-lambda-event-sources'
 import * as s3 from 'aws-cdk-lib/aws-s3'
 import * as sqs from 'aws-cdk-lib/aws-sqs'
-import { LambdaFunction } from './lamda_function'
+import { LambdaFunction } from './lamda_function.js'
 
 interface RaceQueueProps {
   readonly stackName: string;

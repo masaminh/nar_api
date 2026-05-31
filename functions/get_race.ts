@@ -11,10 +11,10 @@ import type { SQSBatchResponse, SQSEvent } from 'aws-lambda'
 import middy from '@middy/core'
 import { injectLambdaContext } from '@aws-lambda-powertools/logger/middleware'
 import { captureLambdaHandler } from '@aws-lambda-powertools/tracer/middleware'
-import { getLogger, getTracer } from './common/powertools'
-import * as awsS3 from './common/awss3'
-import { getEnvironment } from './common/get_environment'
-import { getRaceDatePrefix } from './common/get_race_date_prefix'
+import { getLogger, getTracer } from './common/powertools.js'
+import * as awsS3 from './common/awss3.js'
+import { getEnvironment } from './common/get_environment.js'
+import { getRaceDatePrefix } from './common/get_race_date_prefix.js'
 
 const logger = getLogger('INFO')
 const tracer = getTracer()
