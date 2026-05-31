@@ -6,9 +6,9 @@ import axios from 'axios'
 import middy from '@middy/core'
 import { injectLambdaContext } from '@aws-lambda-powertools/logger/middleware'
 import { captureLambdaHandler } from '@aws-lambda-powertools/tracer/middleware'
-import { isObject, isString } from './common/type_utils'
-import { getLogger, getTracer } from './common/powertools'
-import { chunk } from './common/array_utils'
+import { isObject, isString } from './common/type_utils.js'
+import { getLogger, getTracer } from './common/powertools.js'
+import { chunk } from './common/array_utils.js'
 
 const logger = getLogger('INFO')
 const tracer = getTracer()

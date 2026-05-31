@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
-import { listObjects as S3ListObjects } from './common/awss3'
-import { getEnvironment } from './common/get_environment'
-import { getRaceDatePrefix } from './common/get_race_date_prefix'
+import { listObjects as S3ListObjects } from './common/awss3.js'
+import { getEnvironment } from './common/get_environment.js'
+import { getRaceDatePrefix } from './common/get_race_date_prefix.js'
 
 type ReturnType = {
   date: string;

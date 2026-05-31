@@ -1,10 +1,10 @@
-import serverlessExpress from '@codegenie/serverless-express'
+import { configure as serverlessExpress } from '@codegenie/serverless-express'
 import { injectLambdaContext } from '@aws-lambda-powertools/logger/middleware'
 import { captureLambdaHandler } from '@aws-lambda-powertools/tracer/middleware'
 import middy from '@middy/core'
-import app from './api'
-import * as Log from './common/log'
-import { getLogger, getTracer } from './common/powertools'
+import app from './api.js'
+import * as Log from './common/log.js'
+import { getLogger, getTracer } from './common/powertools.js'
 
 const logger = getLogger('INFO')
 const tracer = getTracer()

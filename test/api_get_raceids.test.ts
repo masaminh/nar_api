@@ -1,12 +1,12 @@
 import { DateTime } from 'luxon'
-import { getRaceIds } from '../functions/api_get_raceids'
-import { listObjects } from '../functions/common/awss3'
-import { getEnvironment } from '../functions/common/get_environment'
-import { getRaceDatePrefix } from '../functions/common/get_race_date_prefix'
+import { getRaceIds } from '../functions/api_get_raceids.js'
+import { listObjects } from '../functions/common/awss3.js'
+import { getEnvironment } from '../functions/common/get_environment.js'
+import { getRaceDatePrefix } from '../functions/common/get_race_date_prefix.js'
 
-vitest.mock('../functions/common/awss3')
-vitest.mock('../functions/common/get_environment')
-vitest.mock('../functions/common/get_race_date_prefix')
+vitest.mock('../functions/common/awss3.js')
+vitest.mock('../functions/common/get_environment.js')
+vitest.mock('../functions/common/get_race_date_prefix.js')
 
 const listObjectsMock = vitest.mocked(listObjects)
 const getEnvironmentMock = vitest.mocked(getEnvironment)

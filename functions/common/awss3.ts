@@ -6,7 +6,7 @@ import {
   StorageClass,
 } from '@aws-sdk/client-s3'
 import { Upload } from '@aws-sdk/lib-storage'
-import { getTracer } from './powertools'
+import { getTracer } from './powertools.js'
 
 const tracer = getTracer()
 const client = tracer.captureAWSv3Client(new S3Client({}))

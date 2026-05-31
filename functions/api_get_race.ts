@@ -3,9 +3,9 @@ import { pipeline } from 'node:stream/promises'
 import { createGunzip } from 'node:zlib'
 import { DateTime } from 'luxon'
 import * as cheerio from 'cheerio'
-import { getRaceDatePrefix } from './common/get_race_date_prefix'
-import { getEnvironment } from './common/get_environment'
-import { getObject as S3GetObject } from './common/awss3'
+import { getRaceDatePrefix } from './common/get_race_date_prefix.js'
+import { getEnvironment } from './common/get_environment.js'
+import { getObject as S3GetObject } from './common/awss3.js'
 
 const placeMap = new Map<string, string>([
   ['03', '帯広'],

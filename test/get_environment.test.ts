@@ -1,4 +1,4 @@
-import { getEnvironment } from '../functions/common/get_environment'
+import { getEnvironment } from '../functions/common/get_environment.js'
 
 let env: NodeJS.ProcessEnv
 

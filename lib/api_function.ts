@@ -3,7 +3,7 @@ import * as cdk from 'aws-cdk-lib'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
 import * as s3 from 'aws-cdk-lib/aws-s3'
 import * as ssm from 'aws-cdk-lib/aws-ssm'
-import { LambdaFunction } from './lamda_function'
+import { LambdaFunction } from './lamda_function.js'
 
 interface ApiFunctionProps {
   readonly stackName: string;

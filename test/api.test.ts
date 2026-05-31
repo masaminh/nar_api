@@ -3,14 +3,14 @@ import request from 'supertest'
 import app, {
   handleGetRaceRequest,
   raceidRouteParamIsString,
-} from '../functions/api'
-import { getRaceIds } from '../functions/api_get_raceids'
-import { getRace } from '../functions/api_get_race'
+} from '../functions/api.js'
+import { getRaceIds } from '../functions/api_get_raceids.js'
+import { getRace } from '../functions/api_get_race.js'
 
 vitest.mock('@aws-lambda-powertools/logger')
 vitest.mock('@aws-lambda-powertools/tracer')
-vitest.mock('../functions/api_get_raceids')
-vitest.mock('../functions/api_get_race')
+vitest.mock('../functions/api_get_raceids.js')
+vitest.mock('../functions/api_get_race.js')
 
 const mockGetRaceIds = vitest.mocked(getRaceIds)
 const mockGetRace = vitest.mocked(getRace)

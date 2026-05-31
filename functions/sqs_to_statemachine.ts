@@ -2,9 +2,9 @@ import type { SQSBatchResponse, SQSEvent } from 'aws-lambda'
 import middy from '@middy/core'
 import { injectLambdaContext } from '@aws-lambda-powertools/logger/middleware'
 import { captureLambdaHandler } from '@aws-lambda-powertools/tracer/middleware'
-import * as awsSfn from './common/awssfn'
-import { getLogger, getTracer } from './common/powertools'
-import { getEnvironment } from './common/get_environment'
+import * as awsSfn from './common/awssfn.js'
+import { getLogger, getTracer } from './common/powertools.js'
+import { getEnvironment } from './common/get_environment.js'
 
 const logger = getLogger('INFO')
 const tracer = getTracer()

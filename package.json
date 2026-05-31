@@ -1,6 +1,7 @@
 {
   "name": "nar_api",
   "version": "0.1.0",
+  "type": "module",
   "packageManager": "npm@11.11.0",
   "engines": {
     "node": ">=24.0.0",
@@ -14,13 +15,13 @@
     "watch": "tsc -w",
     "test": "TZ=UTC vitest run",
     "cdk": "cdk",
-    "synth": "cdk synth",
-    "deploy": "cdk deploy --require-approval never",
+    "synth": "npm run compile && cdk synth",
+    "deploy": "npm run compile && cdk deploy --require-approval never",
     "lint": "eslint .",
     "compile": "tsc",
     "fix": "eslint . --fix",
     "_prepare": "npm run compile",
-    "pretest": "npm run compile && npm run synth > /dev/null",
+    "pretest": "npm run synth > /dev/null",
     "posttest": "npm run lint"
   },
   "devDependencies": {
@@ -51,13 +52,12 @@
     "@aws-sdk/client-sfn": "^3.1057.0",
     "@aws-sdk/lib-storage": "^3.1057.0",
     "@codegenie/serverless-express": "^5.0.0",
-    "@middy/core": "^4.0.0",
+    "@middy/core": "^7.6.5",
     "aws-cdk-lib": "^2.257.0",
     "axios": "^1.16.1",
     "cheerio": "^1.0.0-rc.12",
     "constructs": "^10.6.0",
     "express": "^5.2.1",
-    "luxon": "^3.7.2",
-    "source-map-support": "^0.5.21"
+    "luxon": "^3.7.2"
   }
 }

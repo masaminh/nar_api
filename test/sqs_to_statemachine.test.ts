@@ -1,10 +1,10 @@
 import type { Context, SQSBatchResponse, SQSRecord } from 'aws-lambda'
-import { startSyncExecution } from '../functions/common/awssfn'
-import { handler } from '../functions/sqs_to_statemachine'
+import { startSyncExecution } from '../functions/common/awssfn.js'
+import { handler } from '../functions/sqs_to_statemachine.js'
 
 vitest.mock('@aws-lambda-powertools/logger')
 vitest.mock('@aws-lambda-powertools/tracer')
-vitest.mock('../functions/common/get_environment', () => ({
+vitest.mock('../functions/common/get_environment.js', () => ({
   getEnvironment: (name: string) => {
     if (name === 'STATE_MACHINE_ARN') {
       return 'STATE_MACHINE_ARN_VALUE'
@@ -12,7 +12,7 @@ vitest.mock('../functions/common/get_environment', () => ({
     throw new Error(`unexpected name: ${name}`)
   },
 }))
-vitest.mock('../functions/common/awssfn')
+vitest.mock('../functions/common/awssfn.js')
 
 const mockStartSyncExecution = vitest.mocked(startSyncExecution)
 

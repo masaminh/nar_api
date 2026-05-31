@@ -1,6 +1,6 @@
 import axios from 'axios'
 import type { Context } from 'aws-lambda'
-import { handler } from '../functions/get_race_urls'
+import { handler } from '../functions/get_race_urls.js'
 
 vitest.mock('axios')
 vitest.mock('@aws-lambda-powertools/logger')

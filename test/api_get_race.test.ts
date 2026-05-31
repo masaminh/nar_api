@@ -1,13 +1,13 @@
 import { gzipSync } from 'node:zlib'
-import { getRace } from '../functions/api_get_race'
-import { getEnvironment } from '../functions/common/get_environment'
-import { getRaceDatePrefix } from '../functions/common/get_race_date_prefix'
-import { getObject as S3GetObject } from '../functions/common/awss3'
+import { getRace } from '../functions/api_get_race.js'
+import { getEnvironment } from '../functions/common/get_environment.js'
+import { getRaceDatePrefix } from '../functions/common/get_race_date_prefix.js'
+import { getObject as S3GetObject } from '../functions/common/awss3.js'
 import { Readable } from 'node:stream'
 
-vitest.mock('../functions/common/get_environment')
-vitest.mock('../functions/common/get_race_date_prefix')
-vitest.mock('../functions/common/awss3')
+vitest.mock('../functions/common/get_environment.js')
+vitest.mock('../functions/common/get_race_date_prefix.js')
+vitest.mock('../functions/common/awss3.js')
 
 const getEnvironmentMock = vitest.mocked(getEnvironment)
 const getRaceDatePrefixMock = vitest.mocked(getRaceDatePrefix)

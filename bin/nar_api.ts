@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-import 'source-map-support/register'
 import * as cdk from 'aws-cdk-lib'
-import { NarApiStack } from '../lib/nar_api-stack'
+import { NarApiStack } from '../lib/nar_api-stack.js'
 
 const app = new cdk.App()
 const stackName = app.node.tryGetContext('stackName')
