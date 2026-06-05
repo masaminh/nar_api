@@ -39,7 +39,7 @@
     "esbuild": "^0.28.0",
     "eslint": "^9.39.2",
     "eslint-config-flat-gitignore": "^2.3.0",
-    "neostandard": "^0.12.2",
+    "neostandard": "^0.13.0",
     "supertest": "^7.2.2",
     "ts-node": "^10.9.2",
     "typescript": "~6.0.3",
