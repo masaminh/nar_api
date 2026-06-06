@@ -55,7 +55,7 @@
     "@middy/core": "^7.6.5",
     "aws-cdk-lib": "^2.257.0",
     "axios": "^1.16.1",
-    "cheerio": "^1.0.0-rc.12",
+    "cheerio": "^1.2.0",
     "constructs": "^10.6.0",
     "express": "^5.2.1",
     "luxon": "^3.7.2"
