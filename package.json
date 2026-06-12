@@ -27,7 +27,7 @@
   "devDependencies": {
     "@smithy/util-stream": "^4.6.6",
     "@tsconfig/node24": "^24.0.4",
-    "@types/aws-lambda": "^8.10.161",
+    "@types/aws-lambda": "^8.10.162",
     "@types/express": "^5.0.6",
     "@types/luxon": "^3.7.1",
     "@types/node": "^24",
