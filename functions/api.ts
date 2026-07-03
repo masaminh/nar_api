@@ -26,7 +26,7 @@ function asyncWrapper (
 app.get(
   '/raceids',
   asyncWrapper(async (req, res) => {
-    let date: DateTime
+    let date: DateTime<true> | DateTime<false>
     const paramDate = req.query.date
 
     if (!paramDate) {
