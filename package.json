@@ -25,7 +25,7 @@
     "posttest": "npm run lint"
   },
   "devDependencies": {
-    "@smithy/util-stream": "^4.7.5",
+    "@smithy/util-stream": "^4.7.7",
     "@tsconfig/node24": "^24.0.4",
     "@types/aws-lambda": "^8.10.162",
     "@types/express": "^5.0.6",
@@ -48,9 +48,9 @@
   "dependencies": {
     "@aws-lambda-powertools/logger": "^2.33.1",
     "@aws-lambda-powertools/tracer": "^2.33.1",
-    "@aws-sdk/client-s3": "^3.1078.0",
-    "@aws-sdk/client-sfn": "^3.1078.0",
-    "@aws-sdk/lib-storage": "^3.1078.0",
+    "@aws-sdk/client-s3": "^3.1084.0",
+    "@aws-sdk/client-sfn": "^3.1084.0",
+    "@aws-sdk/lib-storage": "^3.1084.0",
     "@codegenie/serverless-express": "^5.0.0",
     "@middy/core": "^7.7.0",
     "aws-cdk-lib": "^2.261.0",
